@@ -1,5 +1,3 @@
-import './bootstrap';
+require('./bootstrap');
 
-
-import '../sass/app.scss'
-
+require('alpinejs');
