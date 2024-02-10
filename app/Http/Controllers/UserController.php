@@ -1,75 +1,135 @@
 <?php
-
+    
 namespace App\Http\Controllers;
-
+    
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB as FacadesDB;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class UserController extends Controller
 {
-    public function indexAdmin()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('admin.user.index', compact('users'));
+        $data = User::orderBy('id','DESC')->paginate(5);
+        return view('users.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-
+    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::pluck('name','name')->all();
+        return view('users.create',compact('roles'));
     }
-
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'usertype' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
         ]);
-
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'usertype' => $request->input('usertype'),
-        ]);
-
-        return redirect()->route('user.index')->with('success', 'User telah ditambahkan.');
+    
+        $input = $request->all();
+        $input['password'] = FacadesHash::make($input['password']);
+    
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+    
+        return redirect()->route('users.index')
+                        ->with('success','User created successfully');
     }
-
-    public function edit(User $user)
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        return view('admin.user.edit', compact('users'));
+        $user = User::find($id);
+        return view('users.show',compact('user'));
     }
-
-    public function update(Request $request, User $user)
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $request->validate([
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'usertype' => 'required',
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+    
+        return view('users.edit',compact('user','roles','userRole'));
+    }
+    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
         ]);
-
-        $data = [
-            'email' => $request->input('email'),
-            'usertype' => $request->input('usertype'),
-        ];
-
-        if ($request->filled('password')) {
-            $data['password'] = bcrypt($request->input('password'));
+    
+        $input = $request->all();
+        if(!empty($input['password'])){ 
+            $input['password'] = FacadesHash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));    
         }
-
-        // Update data pengguna ke database
-        $user->update($data);
-
-        return redirect()->route('user.index')->with('success', 'User telah diperbarui.');
+    
+        $user = User::find($id);
+        $user->update($input);
+        FacadesDB::table('model_has_roles')->where('model_id',$id)->delete();
+    
+        $user->assignRole($request->input('roles'));
+    
+        return redirect()->route('users.index')
+                        ->with('success','User updated successfully');
     }
-
-    public function destroy(User $user)
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-
-        $user->delete();
-
-        return redirect()->route('user.index')->with('success', 'User telah dihapus.');
+        User::find($id)->delete();
+        return redirect()->route('users.index')
+                        ->with('success','User deleted successfully');
     }
 }

@@ -113,5 +113,4 @@
   <script src="{{asset('asset/vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('asset/js/demo/chart-area-demo.js')}}"></script>  
 </body>
-
 </html>
