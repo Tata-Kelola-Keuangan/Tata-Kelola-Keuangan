@@ -27,20 +27,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/test-mail',function(){
-
-    $message = "Testing mail";
-
-    \Mail::raw('Hi, welcome!', function ($message) {
-      $message->to('ajayydavex@gmail.com')
-        ->subject('Testing mail');
-    });
-
-    dd('sent');
-
-});
-
-
 Route::get('/dashboard', function () {
     return view('front.dashboard');
 })->middleware(['front'])->name('dashboard');
@@ -70,3 +56,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
         Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

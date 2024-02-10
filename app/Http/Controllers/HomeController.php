@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\User; 
-use App\Models\Pegawai; 
-
-
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Pegawai;
 
 class HomeController extends Controller
 {
@@ -33,14 +30,11 @@ class HomeController extends Controller
         $totalUsers = User::count();
         $totalPegawais = Pegawai::count();
 
-        return view('admin.dashboard', compact('totalUsers','totalPegawais'));
+        return view('admin.dashboard', compact('totalUsers', 'totalPegawais'));
     }
-  
-}
 
     public function index()
     {
         return view('home');
     }
 }
-

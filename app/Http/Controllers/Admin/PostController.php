@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
-use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+
 class PostController extends Controller
 {
     /**
@@ -51,7 +52,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data= $request->all();
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = FacadesAuth::user()->id;
         $Post = Post::create($data);
         return redirect()->back()->withSuccess('Post created !!!');
     }

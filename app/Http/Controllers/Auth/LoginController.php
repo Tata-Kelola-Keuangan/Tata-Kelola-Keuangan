@@ -1,9 +1,9 @@
 <?php
 
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -26,8 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-
-    protected $redirectTo = '/home';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -38,31 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
-    /**
-     * Create a new controller instance.
-     *
-     * @return RedirectResponse
-     */
-    public function login(Request $request): RedirectResponse
-{
-    $this->validate($request, [
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    $credentials = $request->only('email', 'password');
-
-    if (auth()->attempt($credentials)) {
-        if (auth()->user()->usertype == 'Admin') {
-            return redirect()->route('admin.dashboard');
-        } else {
-            return redirect()->route('home'); // Ganti dengan rute yang sesuai untuk pengguna non-Admin
-        }
-    } else {
-        return redirect()->route('login')->with('error', 'Email address or password is incorrect.');
-    }
 }
-}
-
-
