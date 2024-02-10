@@ -42,12 +42,12 @@ Route::prefix('Admin/User')->middleware(['auth', 'user-access:Admin'])->group(fu
     Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
-// //pegawai
-// Route::prefix('Admin/Pegawai')->middleware(['auth', 'user-access:Admin'])->group(function () {
-//     Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
-//     Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create'); // Perbaikan nama rute
-//     Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
-//     Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-//     Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update'); 
-//     Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
-// });
+//pegawai
+Route::prefix('Admin/Pegawai')->middleware(['auth', 'user-access:Admin'])->group(function () {
+    Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+    Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create'); // Perbaikan nama rute
+    Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+    Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+    Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update'); 
+    Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+});
