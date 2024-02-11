@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="{{asset('asset/img/logo/logo.png')}}" rel="icon">
+  <title>RuangAdmin - Dashboard</title>
+  <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('asset/css/ruang-admin.min.css')}}" rel="stylesheet">
 </head>
 
-<body class="font-sans antialiased">
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
-        <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false"
-            class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
+<body id="page-top">
+  <div id="wrapper">
 
         @include('layouts.sidebar');
 
-        <div class="flex-1 flex flex-col overflow-scroll">
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
 
             @include('layouts.header')
 
@@ -59,6 +54,13 @@
 
         </div>
     </div>
+
+    <script src="{{asset('asset/vendor/jquery/jquery.min.j')}}s"></script>
+  <script src="{{asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('asset/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+  <script src="{{asset('asset/js/ruang-admin.min.js')}}"></script>
+  <script src="{{asset('asset/vendor/chart.js/Chart.min.js')}}"></script>
+  <script src="{{asset('asset/js/demo/chart-area-demo.js')}}"></script>  
 </body>
 
 </html>
