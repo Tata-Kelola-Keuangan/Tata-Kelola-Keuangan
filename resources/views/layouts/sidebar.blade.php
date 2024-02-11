@@ -13,12 +13,12 @@
           <span>Dashboard</span></a>
       </li> 
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('user.index')}}">
+        <a class="nav-link" href="{{route('admin.user.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>User</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('pegawai.index')}}">
+        <a class="nav-link" href="{{route('admin.pegawai.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Pegawai</span></a>
       </li>

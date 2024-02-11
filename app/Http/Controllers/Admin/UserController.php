@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $user= User::latest()->get();
 
-        return view('setting.user.index',['users'=>$user]);
+        return view('user.index',['users'=>$user]);
     }
 
     /**
