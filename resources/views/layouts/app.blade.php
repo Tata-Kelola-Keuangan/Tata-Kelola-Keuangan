@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('asset/img/logo/logo.png')}}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Poliwangi - Tata Kelola Kuangan</title>
   <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('asset/css/ruang-admin.min.css')}}" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body id="page-top">
   <div id="wrapper">
 
-        @include('layouts.sidebar');
+        @include('layouts.sidebar')
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
