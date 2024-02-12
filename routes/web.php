@@ -28,40 +28,55 @@ Route::get('/', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
+Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')
     ->group(function () {
         Route::resource('roles', 'RoleController');
         Route::resource('permissions', 'PermissionController');
         Route::resource('users', 'UserController');
         Route::resource('posts', 'PostController');
 
-        Route::get('/profile',[ProfileController::class,'index'])->name('profile');
-        Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');
-        Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
-        Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
 
-     //admin
-Route::prefix('Admin/User')->middleware(['auth', 'user-access:Admin'])->group(function () {
-    Route::get('/', [UserController::class, 'indexAdmin'])->name('user.index');
-    Route::get('/add', [UserController::class, 'create'])->name('user.create');
-    Route::post('/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('/update/{user}', [UserController::class, 'update'])->name('user.update'); 
-    Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
-});
+        //user
+        Route::prefix('User')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('user.index');
+            Route::get('/add', [UserController::class, 'create'])->name('user.create');
+            Route::post('/store', [UserController::class, 'store'])->name('user.store');
+            Route::get('/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+            Route::put('/update/{user}', [UserController::class, 'update'])->name('user.update');
+            Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+        });
 
-//pegawai
-Route::prefix('Admin/Pegawai')->middleware(['auth', 'user-access:Admin'])->group(function () {
-    Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
-    Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create'); // Perbaikan nama rute
-    Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
-    Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-    Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update'); 
-    Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
-});
-});
+        //pegawai
+        Route::prefix('Pegawai')->group(function () {
+            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
+            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
+            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        });
+
+        //perencanaan
+        Route::prefix('Pegawai')->group(function () {
+            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
+            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
+            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        });
+
+        //pelaksanaan
+        Route::prefix('Pegawai')->group(function () {
+            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
+            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
+            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        });
+    });
 
 Auth::routes();
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
