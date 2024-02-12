@@ -32,6 +32,11 @@
         </div>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.user.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Perencanaan</span></a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="{{route('admin.pegawai.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Pegawai</span></a>
