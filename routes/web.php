@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__ . '/auth.php';
