@@ -32,19 +32,37 @@
                 <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
-                <form method="POST" action="{{ route('admin.logout') }}">
-                @csrf
-                    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
-                                                this.closest('form').submit();"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
-                </form>
               </div>
             </li>
           </ul>
         </nav>
         <!-- Topbar -->
+        <!-- Modal Logout -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Apakah Anda Yakin Untuk logout?</p>
+                </div>
+                <div class="modal-footer">
+                <form method="POST" action="{{ route('admin.logout') }}">
+                @csrf
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                  <a href="" class="btn btn-primary">Logout</a>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
         @yield('content')
