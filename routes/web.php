@@ -40,7 +40,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
         Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
 
-        //admin
+     //admin
 Route::prefix('Admin/User')->middleware(['auth', 'user-access:Admin'])->group(function () {
     Route::get('/', [UserController::class, 'indexAdmin'])->name('user.index');
     Route::get('/add', [UserController::class, 'create'])->name('user.create');
