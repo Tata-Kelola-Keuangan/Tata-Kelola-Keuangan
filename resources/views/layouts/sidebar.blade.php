@@ -31,20 +31,24 @@
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKegiatan"
-          aria-expanded="true" aria-controls="collapseKegiatan>
-          <i class="fas fa- fa- solid fa-user -maximize"></i>
-          <span>Manajemen Kegiatam</span>
-        </a>
-        <div id="collapseKegiatan" class="collapse" aria-labelledby="headingKegiatan" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Manajemen Kegiatam</h6>
-            <a class="collapse-item" href="{{route('admin.user.index')}}">Perencanaan</a>
-            <a class="collapse-item" href="{{route('admin.pegawai.index')}}">Pegawai</a>
-            <a class="collapse-item" href="{{('admin.laporan')}}">Laporan</a>
-          </div>
-        </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Kegiatan
+  </div>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.user.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Perencanaan</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.pegawai.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Pegawai</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{('admin.laporan')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Laporan</span></a>
       </li>
     </ul>
     <!-- Sidebar -->
