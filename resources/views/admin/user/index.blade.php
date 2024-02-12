@@ -5,7 +5,6 @@
         <h1 class="h3 mb-0 text-gray-800">User</h1>
         <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.user.create') }}">Tambah User</a>
     </div>
-
     <div class="row">
         <div class="col-lg-12 mb-4">
             <!-- Simple Tables -->
