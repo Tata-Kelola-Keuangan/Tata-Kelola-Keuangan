@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     ProfileController,
-    MailSettingController,
 };
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -21,28 +20,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/dashboard', function () {
-    return view('front.dashboard');
-})->middleware(['front'])->name('dashboard');
-
-
-require __DIR__ . '/front_auth.php';
-
-// Admin routes
-Route::get('/admin/dashboard', function () {
+Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__ . '/auth.php';
-
-
-
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
     ->group(function () {
@@ -53,10 +37,8 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
 
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
-        Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
 
-        //admin
+        //user
         Route::prefix('Admin/User')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('user.index');
             Route::get('/add', [UserController::class, 'create'])->name('user.create');
@@ -69,7 +51,27 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         //pegawai
         Route::prefix('Admin/Pegawai')->group(function () {
             Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
-            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create'); // Perbaikan nama rute
+            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
+            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
+            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        });
+
+        //perencanaan
+        Route::prefix('Admin/Pegawai')->group(function () {
+            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
+            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
+            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        });
+
+        //pelaksanaan
+        Route::prefix('Admin/Pegawai')->group(function () {
+            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
             Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
             Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
             Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');

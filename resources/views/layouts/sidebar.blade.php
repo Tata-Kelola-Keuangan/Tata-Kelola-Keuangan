@@ -18,6 +18,16 @@
           <span>User</span></a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.roles.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Role</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.permissions.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Permission</span></a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="{{route('admin.pegawai.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Pegawai</span></a>

@@ -1,9 +1,11 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">User</h1>
-        <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.user.create') }}">Tambah User</a>
+        <a type="button" class="btn btn-primary mb-1" href="{{ route('user.create') }}">Tambah User</a>
     </div>
 
     <div class="row">
@@ -32,9 +34,9 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->usertype }}</td>
                                 <td>
-                                    <a href="{{ route('admin.user.edit', ['user' => $user->id]) }}"
+                                    <a href="{{ route('user.edit', ['user' => $user->id]) }}"
                                         class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('admin.user.destroy', ['user' => $user->id]) }}" method="POST"
+                                    <form action="{{ route('user.destroy', ['user' => $user->id]) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         @method('DELETE')
@@ -51,4 +53,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+    @endsection
