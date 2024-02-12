@@ -14,7 +14,7 @@
       </li> 
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
-        Features
+        Fitur
       </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
@@ -31,6 +31,10 @@
           </div>
         </div>
       </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Kegiatan
+      </div>
       <li class="nav-item active">
         <a class="nav-link" href="{{route('admin.user.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
