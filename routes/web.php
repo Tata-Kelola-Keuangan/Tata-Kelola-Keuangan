@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
+Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')
     ->group(function () {
         Route::resource('roles', 'RoleController');
         Route::resource('permissions', 'PermissionController');
@@ -39,7 +39,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
 
         //user
-        Route::prefix('Admin/User')->group(function () {
+        Route::prefix('User')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('user.index');
             Route::get('/add', [UserController::class, 'create'])->name('user.create');
             Route::post('/store', [UserController::class, 'store'])->name('user.store');
@@ -49,7 +49,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         });
 
         //pegawai
-        Route::prefix('Admin/Pegawai')->group(function () {
+        Route::prefix('Pegawai')->group(function () {
             Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
             Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
             Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
@@ -59,7 +59,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         });
 
         //perencanaan
-        Route::prefix('Admin/Pegawai')->group(function () {
+        Route::prefix('Pegawai')->group(function () {
             Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
             Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
             Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
@@ -69,7 +69,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         });
 
         //pelaksanaan
-        Route::prefix('Admin/Pegawai')->group(function () {
+        Route::prefix('Pegawai')->group(function () {
             Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
             Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
             Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
@@ -80,6 +80,3 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
     });
 
 Auth::routes();
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
