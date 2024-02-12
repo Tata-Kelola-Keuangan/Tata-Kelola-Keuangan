@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,9 @@ class PermissionController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Permission access|Permission create|Permission edit|Permission delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Permission create', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:Permission edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:Permission access|Permission create|Permission edit|Permission delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Permission create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Permission edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Permission delete', ['only' => ['destroy']]);
     }
 
@@ -31,9 +32,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permission= Permission::latest()->get();
+        $permission = Permission::latest()->get();
 
-        return view('setting.permission.index',['permissions'=>$permission]);
+        return view('admin.permission.index', ['permissions' => $permission]);
     }
 
     /**
@@ -43,7 +44,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('setting.permission.new');
+        return view('admin.permission.new');
     }
 
     /**
@@ -56,9 +57,9 @@ class PermissionController extends Controller
     {
         // validation 
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
         ]);
-        $permission = Permission::create(['name'=>$request->name]);
+        $permission = Permission::create(['name' => $request->name]);
         return redirect()->back()->withSuccess('Permission created !!!');
     }
 
@@ -81,7 +82,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-       return view('setting.permission.edit',['permission' => $permission]);
+        return view('admin.permission.edit', ['permission' => $permission]);
     }
 
     /**
@@ -93,7 +94,7 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        $permission->update(['name'=>$request->name]);
+        $permission->update(['name' => $request->name]);
         return redirect()->back()->withSuccess('Permission updated !!!');
     }
 

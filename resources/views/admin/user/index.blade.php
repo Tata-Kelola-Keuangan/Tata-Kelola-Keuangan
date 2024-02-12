@@ -26,8 +26,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                    <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                    <tr class="text-center">
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
@@ -40,6 +40,7 @@
                                         <td>
                                             <a href="{{ route('admin.user.edit', ['user' => $user->id]) }}"
                                                 class="btn btn-primary">Edit</a>
+
                                             <form action="{{ route('admin.user.destroy', ['user' => $user->id]) }}"
                                                 method="POST" style="display: inline;">
                                                 @csrf
