@@ -4,13 +4,13 @@
             <div class="container mx-auto px-6 py-1">
                 <div class="bg-white shadow-md rounded my-6 p-5">
                     @can('Role edit')
-                        <form method="POST" action="{{ route('admin.roles.update', $role->id) }}">
+                        <form method="POST" action="{{ route('admin.roles.store') }}">
                             @csrf
-                            @method('put')
+                            @method('post')
                             <div class="flex flex-col space-y-2">
                                 <label for="role_name" class="text-gray-700 select-none font-medium">Role Name</label>
-                                <input id="role_name" type="text" name="name" value="{{ old('name', $role->name) }}"
-                                    placeholder="Placeholder"
+                                <input id="role_name" type="text" name="name" value="{{ old('name') }}"
+                                    placeholder="Enter role"
                                     class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
                             </div>
 
@@ -21,8 +21,7 @@
                                         <div class="flex flex-col">
                                             <label class="inline-flex items-center mt-3">
                                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"
-                                                    name="permissions[]" value="{{ $permission->id }}"
-                                                    @if (count($role->permissions->where('id', $permission->id))) checked @endif><span
+                                                    name="permissions[]" value="{{ $permission->id }}"><span
                                                     class="ml-2 text-gray-700">{{ $permission->name }}</span>
                                             </label>
                                         </div>
@@ -31,7 +30,7 @@
                             </div>
                             <div class="text-center mt-16">
                                 <button type="submit"
-                                    class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Update</button>
+                                    class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Submit</button>
                             </div>
                         </form>
                     @endcan

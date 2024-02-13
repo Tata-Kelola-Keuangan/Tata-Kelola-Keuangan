@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Gate;
-
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -32,7 +32,7 @@ class RoleController extends Controller
     {
         $role= Role::latest()->get();
 
-        return view('setting.role.index',['roles'=>$role]);
+        return view('admin.role.index',['roles'=>$role]);
     }
 
     /**
@@ -43,7 +43,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-        return view('setting.role.new',['permissions'=>$permissions]);
+        return view('admin.role.create',['permissions'=>$permissions]);
     }
 
     /**
@@ -56,11 +56,10 @@ class RoleController extends Controller
     {
         $request->validate(['name'=>'required']);
 
-        $role = Role::create(['name'=>$request->name]);
-
+        $role = Role::create(['name'=>$request->input('name')]);
         $role->syncPermissions($request->permissions);
         
-        return redirect()->back()->withSuccess('Role created !!!');
+        return redirect()->route('admin.roles.index')->withSuccess('Role created successfully !!!');
     }
 
     /**
@@ -84,7 +83,7 @@ class RoleController extends Controller
     {
         $permission = Permission::get();
         $role->permissions;
-       return view('setting.role.edit',['role'=>$role,'permissions' => $permission]);
+       return view('admin.role.edit',['role'=>$role,'permissions' => $permission]);
     }
 
     /**
@@ -98,7 +97,7 @@ class RoleController extends Controller
     {
         $role->update(['name'=>$request->name]);
         $role->syncPermissions($request->permissions);
-        return redirect()->back()->withSuccess('Role updated !!!');
+        return redirect()->route('admin.roles.index')->withSuccess('Role edit successfully !!!');
     }
 
     /**
@@ -107,9 +106,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        $role->delete();
-        return redirect()->back()->withSuccess('Role deleted !!!');
+        DB::table("roles")->where('id', $id)->delete();
+        return redirect()->route('admin.roles.index')->withSuccess('Role delete successfully !!!');
     }
 }

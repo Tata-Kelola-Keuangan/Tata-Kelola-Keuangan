@@ -33,7 +33,7 @@ class PermissionController extends Controller
     {
         $permission= Permission::latest()->get();
 
-        return view('setting.permission.index',['permissions'=>$permission]);
+        return view('admin.permission.index',['permissions'=>$permission]);
     }
 
     /**
@@ -43,7 +43,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('setting.permission.new');
+        return view('admin.permission.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class PermissionController extends Controller
             'name'=>'required',
         ]);
         $permission = Permission::create(['name'=>$request->name]);
-        return redirect()->back()->withSuccess('Permission created !!!');
+        return redirect()->route('admin.permission.index')->withSuccess('Permission create successfully !!!');
     }
 
     /**
@@ -81,7 +81,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-       return view('setting.permission.edit',['permission' => $permission]);
+       return view('admin.permission.edit',['permission' => $permission]);
     }
 
     /**
@@ -94,7 +94,7 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $permission->update(['name'=>$request->name]);
-        return redirect()->back()->withSuccess('Permission updated !!!');
+        return redirect()->route('admin.permissions.index')->withSuccess('Permission update successfully !!!');
     }
 
     /**
@@ -106,6 +106,6 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return redirect()->back()->withSuccess('Permission deleted !!!');
+        return redirect()->route('admin.permissions.index')->withSuccess('Permission deleted successfully !!!');
     }
 }
