@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="{{asset('asset/img/logo/logo.png')}}" rel="icon">
+  <link href="{{asset('asset/img/logo/logo2.png')}}" rel="icon">
   <title>Poliwangi - Tata Kelola Kuangan</title>
   <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">

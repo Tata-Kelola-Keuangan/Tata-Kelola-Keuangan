@@ -4,7 +4,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">User</h1>
             @can('Role create')
-                <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.roles.create') }}">Tambah Role</a>
+            <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.roles.create') }}">Tambah Role</a>
             @endcan
         </div>
 
@@ -26,41 +26,37 @@
                             </thead>
                             <tbody>
                                 @can('Role access')
-                                    @foreach ($roles as $role)
-                                        <tr class="text-center">
-                                            <td>{{ $role->name }}</td>
-                                            <td>
-                                                @foreach ($role->permissions as $permission)
-                                                    <span class="badge badge-secondary">
-                                                        {{ $permission->name }}
-                                                    </span>
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                @can('Role edit')
-                                                    <a href="{{ route('admin.roles.edit', $role->id) }}"
-                                                        class="btn btn-primary">Edit</a>
-                                                @endcan
-
-                                                @can('Role delete')
-                                                    <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST"
-                                                        style="display: inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-
-                                                        <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus User ini?')">Hapus</button>
-                                                    </form>
-                                                @endcan
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach ($roles as $role)
+                                <tr class="text-center">
+                                    <td>{{ $role->name }}</td>
+                                    <td>
+                                        @foreach ($role->permissions as $permission)
+                                        <span class="badge badge-secondary">
+                                            {{ $permission->name }}
+                                        </span>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <a href="{{ route('admin.roles.edit', $role->id) }}"
+                                                class="btn btn-primary mr-2">Edit</a>
+                                            <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
                                 @endcan
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </x-app-layout>

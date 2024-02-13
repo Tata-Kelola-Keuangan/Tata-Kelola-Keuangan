@@ -32,7 +32,7 @@ class RoleController extends Controller
     {
         $role= Role::latest()->get();
 
-        return view('setting.role.index',['roles'=>$role]);
+        return view('admin.role.index',['roles'=>$role]);
     }
 
     /**
@@ -43,7 +43,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-        return view('setting.role.new',['permissions'=>$permissions]);
+        return view('admin.role.new',['permissions'=>$permissions]);
     }
 
     /**
@@ -84,7 +84,7 @@ class RoleController extends Controller
     {
         $permission = Permission::get();
         $role->permissions;
-       return view('setting.role.edit',['role'=>$role,'permissions' => $permission]);
+       return view('admin.role.edit',['role'=>$role,'permissions' => $permission]);
     }
 
     /**

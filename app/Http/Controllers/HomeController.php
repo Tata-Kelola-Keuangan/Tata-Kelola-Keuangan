@@ -29,6 +29,8 @@ class HomeController extends Controller
     {
         $totalUsers = User::count();
         $totalPegawais = Pegawai::count();
+        // $totalPeranancangan = Perancangan::count();
+        // $totalPelaksanaan = Pelaksanaan::count();
 
         return view('admin.dashboard', compact('totalUsers', 'totalPegawais'));
     }
