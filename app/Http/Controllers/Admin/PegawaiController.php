@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\File;
 
 class PegawaiController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('role_or_permission:Pegawai access|Pegawai create|Pegawai edit|Pegawai delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Pegawai create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Pegawai edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Pegawai delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $pegawai = Pegawai::all();

@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     ProfileController,
+    UserController,
+    PegawaiController
 };
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PegawaiController;
+// use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\PelaksanaanController;
 use App\Http\Controllers\PerencanaanController;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +26,13 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('admin.dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
+// Route::get('/', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__ . '/auth.php';
+
+Route::get('/', [HomeController::class, 'admin'])->name('admin.dashboard')->middleware(['auth']);
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')
     ->group(function () {

@@ -82,6 +82,11 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Permission create']);
         $permission = Permission::create(['name' => 'Permission delete']);
 
+        $permission = Permission::create(['name' => 'Pegawai access']);
+        $permission = Permission::create(['name' => 'Pegawai edit']);
+        $permission = Permission::create(['name' => 'Pegawai create']);
+        $permission = Permission::create(['name' => 'Pegawai delete']);
+
         $permission = Permission::create(['name' => 'Perencanaan access']);
         $permission = Permission::create(['name' => 'Perencanaan edit']);
         $permission = Permission::create(['name' => 'Perencanaan create']);
@@ -92,7 +97,6 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Pelaksanaan create']);
         $permission = Permission::create(['name' => 'Pelaksanaan delete']);
 
-        $permission = Permission::create(['name' => 'Laporan access']);
         $permission = Permission::create(['name' => 'Laporan delete']);
 
 
