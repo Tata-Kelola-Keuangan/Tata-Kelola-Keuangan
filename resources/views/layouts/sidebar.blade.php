@@ -33,6 +33,16 @@
           <span>Pegawai</span></a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.perencanaan.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Perencanaan</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('admin.pelaksanaan.index')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Pelaksanaan</span></a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="{{('admin.laporan')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Laporan</span></a>

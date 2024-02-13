@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFrontusersTable extends Migration
+class CreateTbUnitTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateFrontusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('frontusers', function (Blueprint $table) {
+        Schema::create('tb_unit', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('nama');
+            $table->string('singkatan');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateFrontusersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('frontusers');
+        Schema::dropIfExists('tb_unit');
     }
 }

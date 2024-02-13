@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PelaksanaanController;
+use App\Http\Controllers\PerencanaanController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')
         Route::resource('roles', 'RoleController');
         Route::resource('permissions', 'PermissionController');
         Route::resource('users', 'UserController');
-        Route::resource('posts', 'PostController');
-
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-        Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
 
         //user
         Route::prefix('User')->group(function () {
@@ -59,24 +57,22 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')
         });
 
         //perencanaan
-        Route::prefix('Pegawai')->group(function () {
-            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
-            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
-            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
-            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
-            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        Route::prefix('Perancanaan')->group(function () {
+            Route::get('/', [PerencanaanController::class, 'index'])->name('perencanaan.index');
+            Route::get('/add', [PerencanaanController::class, 'create'])->name('perencanaan.create');
+            Route::post('/store', [PerencanaanController::class, 'store'])->name('perencanaan.store');
+            Route::get('/edit/{Perancanaan}', [PerencanaanController::class, 'edit'])->name('perencanaan.edit');
+            Route::put('/update/{Perancanaan}', [PerencanaanController::class, 'update'])->name('perencanaan.update');
+            Route::delete('/destroy/{Perancanaan}', [PerencanaanController::class, 'destroy'])->name('perencanaan.destroy');
         });
 
         //pelaksanaan
-        Route::prefix('Pegawai')->group(function () {
-            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
-            Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
-            Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
-            Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-            Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
-            Route::delete('/destroy/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+        Route::prefix('Pelaksanaan')->group(function () {
+            Route::get('/', [PelaksanaanController::class, 'index'])->name('pelaksanaan.index');
+            Route::get('/add', [PelaksanaanController::class, 'create'])->name('pelaksanaan.create');
+            Route::post('/store', [PelaksanaanController::class, 'store'])->name('pelaksanaan.store');
+            Route::get('/edit/{Pelaksanaan}', [PelaksanaanController::class, 'edit'])->name('pelaksanaan.edit');
+            Route::put('/update/{Pelaksanaan}', [PelaksanaanController::class, 'update'])->name('pelaksanaan.update');
+            Route::delete('/destroy/{Pelaksanaan}', [PelaksanaanController::class, 'destroy'])->name('pelaksanaan.destroy');
         });
     });
-
-Auth::routes();
