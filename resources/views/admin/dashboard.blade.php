@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -15,7 +13,7 @@
                     <div class="row align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">User</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalUsers}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -31,7 +29,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Pegawai</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalPegawais}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -42,4 +40,4 @@
         </div>
     </div>
 </div>
-@endsection
+</x-app-layout>
