@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name' => 'Admin',
+            'name' => 'Administrator',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
             'profile' => 'user.avif'
@@ -64,7 +64,7 @@ class AdminSeeder extends Seeder
         $informatika_role = Role::create(['name' => 'Bisnis dan Informatika']);
         $sipil_role = Role::create(['name' => 'Teknik Sipil']);
         $mesin_role = Role::create(['name' => 'Teknik Mesin']);
-        $pertanian_role = Role::create(['name' => 'Pertaanian']);
+        $pertanian_role = Role::create(['name' => 'Pertanian']);
         $pariwisata_role = Role::create(['name' => 'Pariwisata']);
 
         $permission = Permission::create(['name' => 'User access']);

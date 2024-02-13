@@ -48,7 +48,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')
 
         //pegawai
         Route::prefix('Pegawai')->group(function () {
-            Route::get('/', [PegawaiController::class, 'indexPegawai'])->name('pegawai.index');
+            Route::get('/', [PegawaiController::class, 'index'])->name('pegawai.index');
             Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
             Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
             Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');

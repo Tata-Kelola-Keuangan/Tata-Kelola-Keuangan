@@ -18,7 +18,7 @@ class CreateTbPegawaiTable extends Migration
             $table->string('NIK');
             $table->date('tgl_lahir');
             $table->string('nama');
-            $table->integer('nomor_induk');
+            $table->string('nomor_induk');
             $table->enum('status', ['Aktif', 'Tidak Aktif']);
             $table->string('telepon');
             $table->string('alamat');

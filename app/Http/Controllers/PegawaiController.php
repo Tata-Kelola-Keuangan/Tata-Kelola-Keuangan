@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
+use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class PegawaiController extends Controller
 {
-    public function indexPegawai()
+    public function index()
     {
         $pegawai = Pegawai::all();
         return view('admin.pegawai.index', compact('pegawai'));
@@ -18,32 +20,36 @@ class PegawaiController extends Controller
 
     public function create()
     {
-        return view('admin.pegawai.create');
+        $users = User::all();
+        $units = Unit::all();
+        return view('admin.pegawai.create', compact('users', 'units'));
     }
+
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'nik' => 'nullable',
-            'tanggal_lahir' => 'required',
+            'tgl_lahir' => 'required',
             'nomor_induk' => 'required',
             'status' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
-            'KK' => 'required',
-            'npwp' => 'required',
+            'email' => 'required',
             'jenis' => 'required',
         ]);
 
         Pegawai::create($request->all());
 
-        return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil ditambahkan!');
+        return redirect()->route('admin.pegawai.index')->with('success', 'Data pegawai berhasil ditambahkan!');
     }
 
     public function edit(Pegawai $pegawai)
     {
-        return view('admin.pegawai.edit', compact('pegawai'));
+        $users = User::all();
+        $units = Unit::all();
+    return view('admin.pegawai.edit', compact('pegawai', 'units', 'users'));
     }
 
     public function update(Request $request, Pegawai $pegawai)
@@ -55,13 +61,13 @@ class PegawaiController extends Controller
 
         $pegawai->update($request->all());
 
-        return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui!');
+        return redirect()->route('admin.pegawai.index')->with('success', 'Data pegawai berhasil diperbarui!');
     }
 
     public function destroy(Pegawai $pegawai)
     {
         $pegawai->delete();
 
-        return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil dihapus!');
+        return redirect()->route('admin.pegawai.index')->with('success', 'Data pegawai berhasil dihapus!');
     }
 }

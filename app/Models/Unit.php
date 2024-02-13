@@ -9,6 +9,8 @@ class Unit extends Model
 {
     use HasFactory;
 
+    protected $table = 'tb_unit';
+
     protected $fillable = [
         'nama',
         'singkatan',
@@ -18,5 +20,10 @@ class Unit extends Model
     public function perencanaan()
     {
         return $this->hasMany(Perencanaan::class);
+    }
+
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
     }
 }
