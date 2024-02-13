@@ -3,7 +3,9 @@
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">User</h1>
-            <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.pegawai.create') }}">Tambah Pegawai</a>
+            @can('Pegawai create')
+                <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.pegawai.create') }}">Tambah Pegawai</a>
+            @endcan
         </div>
 
         <div class="row">
@@ -34,37 +36,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pegawai as $pegawai)
-                                    <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $pegawai->NIK }}</td>
-                                        <td>{{ $pegawai->nama }}</td>
-                                        <td>{{ $pegawai->tgl_lahir }}</td>
-                                        <td>{{ $pegawai->nomor_induk }}</td>
-                                        <td>{{ $pegawai->status }}</td>
-                                        <td>{{ $pegawai->telepon }}</td>
-                                        <td>{{ $pegawai->alamat }}</td>
-                                        <td>{{ $pegawai->email }}</td>
-                                        <td>{{ $pegawai->unit_id }}</td>
-                                        <td>{{ $pegawai->KK }}</td>
-                                        <td>{{ $pegawai->NPWP }}</td>
-                                        <td>{{ $pegawai->jenis }}</td>
-                                        <td>
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <a href="{{ route('admin.pegawai.edit', ['pegawai' => $pegawai->id]) }}"
-                                                    class="btn btn-primary mr-2">Edit</a>
-                                                <form
-                                                    action="{{ route('admin.pegawai.destroy', ['pegawai' => $pegawai->id]) }}"
-                                                    method="POST" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @can('Pegawai access')
+                                    @foreach ($pegawai as $pegawai)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td>{{ $pegawai->NIK }}</td>
+                                            <td>{{ $pegawai->nama }}</td>
+                                            <td>{{ $pegawai->tgl_lahir }}</td>
+                                            <td>{{ $pegawai->nomor_induk }}</td>
+                                            <td>{{ $pegawai->status }}</td>
+                                            <td>{{ $pegawai->telepon }}</td>
+                                            <td>{{ $pegawai->alamat }}</td>
+                                            <td>{{ $pegawai->email }}</td>
+                                            <td>{{ $pegawai->unit_id }}</td>
+                                            <td>{{ $pegawai->KK }}</td>
+                                            <td>{{ $pegawai->NPWP }}</td>
+                                            <td>{{ $pegawai->jenis }}</td>
+                                            <td>
+                                                @can('Pegawai edit')
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <a href="{{ route('admin.pegawai.edit', ['pegawai' => $pegawai->id]) }}"
+                                                            class="btn btn-primary mr-2">Edit</a>
+
+                                                        @can('Pegawai delete')
+                                                            <form
+                                                                action="{{ route('admin.pegawai.destroy', ['pegawai' => $pegawai->id]) }}"
+                                                                method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                                            </form>
+                                                        @endcan
+                                                    </div>
+                                                @endcan
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endcan
                             </tbody>
                         </table>
                     </div>
