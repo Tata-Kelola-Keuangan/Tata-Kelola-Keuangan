@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB as FacadesDB;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 use Spatie\Permission\Models\Permission;
 
 
@@ -19,9 +23,9 @@ class UserController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:User access|User create|User edit|User delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:User create', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:User edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:User access|User create|User edit|User delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:User create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:User edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:User delete', ['only' => ['destroy']]);
     }
 
@@ -32,9 +36,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user= User::latest()->get();
+        $user = User::latest()->get();
 
-        return view('user.index',['users'=>$user]);
+        return view('admin.user.index', ['users' => $user]);
     }
 
     /**
@@ -44,8 +48,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
-        return view('setting.user.new',['roles'=>$roles]);
+        $roles = Role::pluck('name', 'name')->all();
+        return view('admin.user.create', compact('roles'));
     }
 
     /**
@@ -56,19 +60,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
+        ]);
 
-        $request->validate([
-            'name'=>'required',
-            'email' => 'required|email|unique:users',
-            'password'=>'required|confirmed'
-        ]);
-        $user = User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=> bcrypt($request->password),
-        ]);
-        $user->syncRoles($request->roles);
-        return redirect()->back()->withSuccess('User created !!!');
+        $input = $request->all();
+        $input['password'] = FacadesHash::make($input['password']);
+
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('admin.user.index')->with('success', 'User created successfully');
     }
 
     /**
@@ -79,7 +84,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.show', compact('user'));
     }
 
     /**
@@ -88,11 +94,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        $role = Role::get();
-        $user->roles;
-       return view('setting.user.edit',['user'=>$user,'roles' => $role]);
+        $user = User::find($id);
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+
+        return view('admin.user.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -102,24 +110,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name'=>'required',
-            'email' => 'required|email|unique:users,email,'.$user->id.',id',
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
         ]);
 
-        if($request->password != null){
-            $request->validate([
-                'password' => 'required|confirmed'
-            ]);
-            $validated['password'] = bcrypt($request->password);
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = FacadesHash::make($input['password']);
+        } else {
+            $input = Arr::except($input, array('password'));
         }
 
-        $user->update($validated);
+        $user = User::find($id);
+        $user->update($input);
+        FacadesDB::table('model_has_roles')->where('model_id', $id)->delete();
 
-        $user->syncRoles($request->roles);
-        return redirect()->back()->withSuccess('User updated !!!');
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('admin.user.index')->with('success', 'User updated successfully');
     }
 
     /**
@@ -128,9 +141,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        $role->delete();
-        return redirect()->back()->withSuccess('Role deleted !!!');
+        User::find($id)->delete();
+        return redirect()->route('admin.user.index')->with('success', 'User deleted successfully');
     }
 }

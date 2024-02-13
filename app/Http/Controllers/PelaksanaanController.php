@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Perencanaan;
+use App\Models\Pelaksanaan;
 
-class PerencanaanController extends Controller
+class PelaksanaanController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +16,8 @@ class PerencanaanController extends Controller
      */
     public function index()
     {
-        $perencanaans = Perencanaan::all();
-        return view('admin.perencanaan.index', compact('perencanaans'));
+        $pelaksanaans = Pelaksanaan::all();
+        return view('admin.pelaksanaan.index', compact('pelaksanaans'));
     }
 
     /**

@@ -9,21 +9,47 @@ class Pegawai extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'tb_pegawai';
+
     protected $fillable = [
-        'name',
-        'nik',
-        'tanggal_lahir',
+        'nama',
+        'NIK',
+        'tgl_lahir',
         'nomor_induk',
         'status',
         'telepon',
         'alamat',
+        'email',
+        'unit_id',
         'KK',
-        'npwp',
+        'NPWP',
         'jenis',
+        'user_id',
     ];
+
+    public static function getStatusOptions()
+    {
+        return [
+            'Aktif' => 'Aktif',
+            'Tidak Aktif' => 'Tidak Aktif',
+        ];
+    }
+
+    public static function getjenisOptions()
+    {
+        return [
+            'Jenis 1' => 'Jenis 1',
+            'Jenis 2' => 'Jenis 2',
+        ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }

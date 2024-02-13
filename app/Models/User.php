@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function Admin(){
     return $this->usertype == 'Admin'; // Sesuaikan dengan cara Anda mengidentifikasi admin
     }
+
+    public function pegawai()
+    {
+        return $this->hasOne(Pegawai::class);
+    }
 }
