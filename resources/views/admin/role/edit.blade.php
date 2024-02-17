@@ -44,9 +44,8 @@
                             @endforeach
                         </div>
 
-
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary mb-4">Simpan</button>
                         </div>
                     </form>
                     @endcan
