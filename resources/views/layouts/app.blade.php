@@ -11,6 +11,10 @@
   <title>Poliwangi - Tata Kelola Kuangan</title>
   <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('asset/vendor/select2/dist/css/select2.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('asset/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" >
+  <link href="{{asset('asset/vendor/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" >
+  <link href="{{asset('asset/vendor/clock-picker/clockpicker.css')}}" rel="stylesheet">
   <link href="{{asset('asset/css/ruang-admin.min.css')}}" rel="stylesheet">
 </head>
 
@@ -61,6 +65,10 @@
   <script src="{{asset('asset/js/ruang-admin.min.js')}}"></script>
   <script src="{{asset('asset/vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('asset/js/demo/chart-area-demo.js')}}"></script>  
+  <script src="{{asset('asset/vendor/select2/dist/js/select2.min.js')}}""></script>
+  <script src="{{asset('asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}""></script>
+  <script src="{{asset('asset/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js')}}""></script>
+  <script src="{{asset('asset/vendor/clock-picker/clockpicker.js')}}""></script>
 </body>
 
 </html>

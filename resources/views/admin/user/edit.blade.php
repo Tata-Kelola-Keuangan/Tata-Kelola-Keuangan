@@ -1,49 +1,68 @@
-<x-app-layout>
-    <div class="container">
-        <h1>Edit User</h1>
+<x-<x-app-layout>
+    <div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Edit User</h1>
+        </div>
 
-        @can('User edit')
-            <form method="POST" action="{{ route('admin.user.update', ['user' => $user->id]) }}">
-                @csrf
-                @method('PUT')
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"></div>
+                    @can('User edit')
+                    <form method="POST" action="{{ route('admin.user.update', ['user' => $user->id]) }}">
+                        @csrf
+                        @method('PUT')
 
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="name" class="form-control" id="name" name="name" value="{{ $user->name }}"
-                        required>
+                        <div class="row mx-auto">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Masukkan Nama" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="example@gmail.com" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mx-auto">
+                            <div class="col">
+                                <select class="form-control" type="roles" name="roles[]" id="roles" required>
+                                    <option value="">Pilih Role</option>
+                                    @foreach ($roles as $role)
+                                    <option value="{{$role}}">{{$role}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mx-auto">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Kosongkan Jika Tidak Ingin Mengganti Password" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="confirm-password"
+                                        name="confirm-password" placeholder="konfirmasi password" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                    @endcan
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Kata Sandi Baru (opsional)</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Biarkan kosong jika tidak ingin mengubah kata sandi">
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="confirm-password" name="confirm-password">
-                </div>
-
-                <div class="form-group">
-                    <label for="roles">Role</label>
-                    <select class="form-control" id="roles" name="roles[]">
-                        @foreach ($roles as $role)
-                            <option value="{{ $role }}" {{ $user->usertype == $role ? 'selected' : '' }}>
-                                {{ $role }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        @endcan
+            </div>
+        </div>
     </div>
 </x-app-layout>
