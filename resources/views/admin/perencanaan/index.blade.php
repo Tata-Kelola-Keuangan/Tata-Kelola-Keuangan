@@ -72,6 +72,7 @@
                         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                             <thead class="thead-light">
                                 <tr>
+                                    <th>No</th>
                                     <th>Kode Perencanaan</th>
                                     <th>Nama Perencanaan</th>
                                     <th>Sumber</th>

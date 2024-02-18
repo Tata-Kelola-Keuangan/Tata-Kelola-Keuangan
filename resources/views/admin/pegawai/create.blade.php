@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah User</h1>
+            <h1 class="h3 mb-0 text-gray-800">Tambah Pegawai</h1>
         </div>
 
         <div class="row">
@@ -31,38 +31,61 @@
                         <div class="row mx-auto">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="tgl_lahir">Tanggal Lahir</label>
                                     <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required>
                                 </div>
                             </div>
 
                             <div class="col-md-9">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="nomor_induk" name="nomor_induk" placeholder="Nomor Induk"
-                                        required>
+                                    <input type="text" class="form-control" id="nomor_induk" name="nomor_induk"
+                                        placeholder="Nomor Induk" required>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group mx-auto">
-                            <div class="col">
-                            <select class="form-select" id="status" name="status" aria-label="Default select example" required>
-                                    <option value="">Status</option>
-                                @foreach (\App\Models\Pegawai::getStatusOptions() as $statusValue => $statusLabel)
-                                <option value="{{ $statusValue }}">{{ $statusLabel }}</option>
-                                @endforeach
-                                </select>
+                        <div class="row mx-auto">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control" id="status" name="status"
+                                        aria-label="Default select example" required>
+                                        <option value="">Status</option>
+                                        @foreach (\App\Models\Pegawai::getStatusOptions() as $statusValue =>
+                                        $statusLabel)
+                                        <option value="{{ $statusValue }}">{{ $statusLabel }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="telepon" name="telepon"
+                                        placeholder="Telepon" required>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="telepon">Telepon</label>
-                            <input type="text" class="form-control" id="telepon" name="telepon" required>
-                        </div>
+                        <div class="row mx-auto">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        placeholder="Alamat" required onfocus="isiAlamat()">
+                                </div>
 
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" required>
+                                <script>
+                                    function isiAlamat() {
+                                        // Ganti teks ini dengan logika atau sumber data sesuai kebutuhan Anda
+                                        var kota = "Kota Contoh";
+                                        var kabupaten = "Kabupaten Contoh";
+                                        var provinsi = "Provinsi Contoh";
+
+                                        // Mengisi nilai input alamat dengan alamat lengkap
+                                        var alamatLengkap = kota + ", " + kabupaten + ", " + provinsi;
+                                        document.getElementById("alamat").value = alamatLengkap;
+                                    }
+
+                                </script>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -76,7 +99,8 @@
                                 required>
                                 <option value="" selected disabled>Pilih Unit</option>
                                 @foreach ($units as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->nama }} ({{ $unit->singkatan }})</option>
+                                <option value="{{ $unit->id }}">{{ $unit->nama }} ({{ $unit->singkatan }})
+                                </option>
                                 @endforeach
                             </select>
                         </div>
