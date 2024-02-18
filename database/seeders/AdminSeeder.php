@@ -21,42 +21,42 @@ class AdminSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'user.avif'
+            'profile' => 'default.png'
         ]);
 
         $BisnisInformatika = User::create([
             'name' => 'Bisnis dan Informatika',
             'email' => 'informatika@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'user.avif',
+            'profile' => 'default.png',
         ]);
 
         $TeknikSipil = User::create([
             'name' => 'Teknik Sipil',
             'email' => 'sipil@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'user.avif',
+            'profile' => 'default.png',
         ]);
 
         $TeknikMesin = User::create([
             'name' => 'Teknik Mesin',
             'email' => 'mesin@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'user.avif',
+            'profile' => 'default.png',
         ]);
 
         $Pertanian = User::create([
             'name' => 'Pertanian',
             'email' => 'pertanian@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'user.avif',
+            'profile' => 'default.png',
         ]);
 
         $Pariwisata = User::create([
             'name' => 'Pariwisata',
             'email' => 'pariwisata@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'user.avif',
+            'profile' => 'default.png',
         ]);
 
 
