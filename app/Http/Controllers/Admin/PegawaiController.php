@@ -38,13 +38,16 @@ class PegawaiController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nik' => 'nullable',
+            'NIK' => 'nullable',
             'tgl_lahir' => 'required',
             'nomor_induk' => 'required',
             'status' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
             'email' => 'required',
+            'unit_id' => 'required',
+            'KK' => 'required',
+            'NPWP' => 'required',
             'jenis' => 'required',
         ]);
 
@@ -57,19 +60,36 @@ class PegawaiController extends Controller
     {
         $users = User::all();
         $units = Unit::all();
-    return view('admin.pegawai.edit', compact('pegawai', 'units', 'users'));
+        return view('admin.pegawai.edit', compact('pegawai', 'units', 'users'));
     }
 
     public function update(Request $request, Pegawai $pegawai)
     {
-        $request->validate([
-            'status' => 'required',
-            'alamat' => 'required',
-        ]);
-
         $pegawai->update($request->all());
 
-        return redirect()->route('admin.pegawai.index')->with('success', 'Data pegawai berhasil diperbarui!');
+        $user = $pegawai->user;
+        if ($request->hasFile('profile')) {
+            $this->validate($request, [
+                'profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            ]);
+
+            if ($user->profile) {
+                $previousProfile = public_path('asset/img/profile/' . $user->profile);
+                if (file_exists($previousProfile)) {
+                    unlink($previousProfile);
+                }
+            }
+
+            $image = $request->file('profile');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('asset/img/profile'), $imageName);
+
+            // Update user profile
+            $user->profile = $imageName;
+            $user->save();
+        }
+
+        return redirect()->back()->with('success', 'Data pegawai berhasil diperbarui!');
     }
 
     public function destroy(Pegawai $pegawai)

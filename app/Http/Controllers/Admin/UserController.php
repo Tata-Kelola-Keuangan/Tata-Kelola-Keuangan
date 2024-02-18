@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 use Spatie\Permission\Models\Permission;
@@ -30,11 +31,6 @@ class UserController extends Controller
         $this->middleware('role_or_permission:User delete', ['only' => ['destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $user = User::latest()->get();
@@ -42,23 +38,12 @@ class UserController extends Controller
         return view('admin.user.index', ['users' => $user]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
         return view('admin.user.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -73,37 +58,24 @@ class UserController extends Controller
 
         $user = User::create($input);
 
-        if ($user) {
-            $pegawai = Pegawai::create([
-                'nama' => $user->name,
-                'email' => $user->email,
-                'user_id' => $user->id,
-            ]);
-        }
+        $pegawai = Pegawai::create([
+            'nama' => $user->name,
+            'email' => $user->email,
+            'user_id' => $user->id,
+        ]);
+
 
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('admin.user.index')->with('success', 'User created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $user = User::find($id);
         return view('admin.user.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = User::find($id);
@@ -113,13 +85,6 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user', 'roles', 'userRole'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -145,12 +110,6 @@ class UserController extends Controller
         return redirect()->route('admin.user.index')->with('success', 'User updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         User::find($id)->delete();
