@@ -15,6 +15,7 @@
                         <div class="row mx-auto">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="nama">Nama User</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Masukkan Nama" required>
                                 </div>
@@ -58,15 +59,17 @@
                         <div class="row mx-auto">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="password" required>
+                                        placeholder="Masukan Password" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="confirm-password">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="confirm-password"
-                                        name="confirm-password" placeholder="konfirmasi password" required>
+                                        name="confirm-password" placeholder="Konfirmasi Password" required>
                                 </div>
                             </div>
                         </div>
