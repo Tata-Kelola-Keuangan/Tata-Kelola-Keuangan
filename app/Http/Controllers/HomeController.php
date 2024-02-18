@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Models\Pegawai;
+use App\Models\Perencanaan;
 
 class HomeController extends Controller
 {
@@ -29,10 +30,10 @@ class HomeController extends Controller
     {
         $totalUsers = User::count();
         $totalPegawais = Pegawai::count();
-        // $totalPeranancangan = Perancangan::count();
+        $totalPerencanaan = Perencanaan::count();
         // $totalPelaksanaan = Pelaksanaan::count();
 
-        return view('admin.dashboard', compact('totalUsers', 'totalPegawais'));
+        return view('admin.dashboard', compact('totalUsers', 'totalPegawais', 'totalPerencanaan'));
     }
 
     public function index()
