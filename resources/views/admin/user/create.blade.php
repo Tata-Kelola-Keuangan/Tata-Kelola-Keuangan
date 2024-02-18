@@ -1,16 +1,24 @@
 <x-app-layout>
-    <div class="container">
-        <h1>Tambah User</h1>
+    <div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Tambah User</h1>
+        </div>
 
-        @can('User create')
-            <form method="POST" action="{{ route('admin.user.store') }}">
-                @csrf
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"></div>
+                    @can('User create')
+                    <form method="POST" action="{{ route('admin.user.store') }}">
+                        @csrf
 
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama"
-                        required>
-                </div>
+                        <div class="row mx-auto">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Masukkan Nama" required>
+                                </div>
+                            </div>
 
                 <div class="form-group">
                     <label for="roles">Jenis</label>
@@ -28,22 +36,29 @@
                         required>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="********"
-                        required>
-                </div>
+                        <div class="row mx-auto">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="password" required>
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="confirm-password" name="confirm-password"
-                        placeholder="********" required>
-                </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="confirm-password"
+                                        name="confirm-password" placeholder="konfirmasi password" required>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary">Tambahkan</button>
+                        <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary mb-4">Tambahkan</button>
+                        </div>
+                    </form>
+                    @endcan
                 </div>
-            </form>
-        @endcan
+            </div>
+        </div>
     </div>
 </x-app-layout>
