@@ -8,80 +8,49 @@ use App\Models\Perencanaan;
 
 class PerencanaanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $perencanaans = Perencanaan::all();
         return view('admin.perencanaan.index', compact('perencanaans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        // Tambahkan logika jika diperlukan
+        return view('admin.perencanaan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // Tambahkan logika untuk menyimpan data perencanaan
+        $perencanaan = new Perencanaan();
+        $perencanaan->kode_perencanaan = $request->kode_perencanaan;
+        $perencanaan->nama_perencanaan = $request->nama_perencanaan;
+        $perencanaan->save();
+
+        return redirect()->route('perencanaan.index')->with('success', 'Perencanaan created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // Tambahkan logika jika diperlukan
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        // Tambahkan logika jika diperlukan
+        $perencanaan = Perencanaan::findOrFail($id);
+        return view('admin.perencanaan.edit', compact('perencanaan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        // Tambahkan logika untuk memperbarui data perencanaan
+        $perencanaan = Perencanaan::findOrFail($id);
+        $perencanaan->kode_perencanaan = $request->kode_perencanaan;
+        $perencanaan->nama_perencanaan = $request->nama_perencanaan;
+        // Update other attributes as needed
+        $perencanaan->save();
+
+        return redirect()->route('perencanaan.index')->with('success', 'Perencanaan updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        // Tambahkan logika untuk menghapus data perencanaan
+        $perencanaan = Perencanaan::findOrFail($id);
+        $perencanaan->delete();
+
+        return redirect()->route('perencanaan.index')->with('success', 'Perencanaan deleted successfully');
     }
 }
