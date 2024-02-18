@@ -54,13 +54,15 @@
                 {{ $slot }}
 
             </div>
+            @include('layouts.footer')
         </div>
+    </div>
 
-        <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-        <script src="{{ asset('asset/js/ruang-admin.min.js') }}"></script>
-        @stack('js')
+    <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('asset/js/ruang-admin.min.js') }}"></script>
+    @stack('js')
 </body>
 
 </html>
