@@ -15,6 +15,7 @@
                         <div class="row mx-auto">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="nama">Nama User</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Masukkan Nama" required>
                                 </div>
@@ -22,6 +23,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="example@gmail.com" required>
                                 </div>
@@ -30,6 +32,7 @@
 
                         <div class="form-group mx-auto">
                             <div class="col">
+                            <label for="roles">Tipe User</label>
                                 <select class="form-control" type="roles" name="roles[]" id="roles" required>
                                     <option value="">Pilih Role</option>
                                     @foreach ($roles as $role)
@@ -42,15 +45,17 @@
                         <div class="row mx-auto">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="password" required>
+                                        placeholder="Masukan Password" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
+                                <label for="confirm-password">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="confirm-password"
-                                        name="confirm-password" placeholder="konfirmasi password" required>
+                                        name="confirm-password" placeholder="Konfirmasi Password" required>
                                 </div>
                             </div>
                         </div>

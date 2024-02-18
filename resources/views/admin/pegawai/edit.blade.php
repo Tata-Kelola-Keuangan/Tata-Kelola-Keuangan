@@ -91,18 +91,6 @@
                         @endforeach
                     </select>
                 </div>
-
-                <div class="form-group">
-                    <label for="user_id">User</label>
-                    <select class="form-select" id="user_id" name="user_id" aria-label="Default select example" required>
-                        <option value="" selected disabled>Pilih User</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ $pegawai->user_id == $user->id ? 'selected' : '' }}>
-                                {{ $user->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </div>
