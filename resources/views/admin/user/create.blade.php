@@ -19,6 +19,25 @@
                                         placeholder="Masukkan Nama" required>
                                 </div>
                             </div>
+                <div class="form-group">
+                    <label for="roles">Jenis</label>
+                    <select class="form-control" id="roles" name="roles[]" aria-label="Default select example" required>
+                        <option selected disabled>Pilih Role</option>
+                        @foreach ($roles as $role)
+                            <option value="{{ $role }}">{{ $role }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                        <div class="form-group mx-auto">
+                            <div class="col">
+                                <select class="form-control" type="roles" name="roles[]" id="roles" required>
+                                    <option value="">Pilih Role</option>
+                                    @foreach ($roles as $role)
+                                    <option value="{{$role}}">{{$role}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                 <div class="form-group">
                     <label for="roles">Jenis</label>

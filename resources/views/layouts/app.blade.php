@@ -13,6 +13,7 @@
     <link href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('asset/css/ruang-admin.min.css') }}" rel="stylesheet">
     @stack('css')
+    
 </head>
 
 <body id="page-top">
