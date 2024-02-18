@@ -48,8 +48,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Perancangan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Perencanaan</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalPerencanaan }}</div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <a class="text-success mr-2" href="{{ route('admin.perencanaan.index') }}"><i
                                             class="fa fa-arrow-up"></i> SHOW MORE</a>

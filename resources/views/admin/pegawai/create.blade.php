@@ -31,12 +31,11 @@
                         <div class="row mx-auto">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <small class="form-text text-muted">Masukkan tanggal lahir</small>
                                     <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required>
                                 </div>
                             </div>
 
-                            <div class="col-md-9 mt-4">
+                            <div class="col-md-9">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="nomor_induk" name="nomor_induk"
                                         placeholder="Nomor Induk" required>
@@ -45,9 +44,9 @@
                         </div>
 
                         <div class="row mx-auto">
-                            <div class="form-group">
-                                <div class="col">
-                                    <select class="form-select" id="status" name="status"
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control" id="status" name="status"
                                         aria-label="Default select example" required>
                                         <option value="">Status</option>
                                         @foreach (\App\Models\Pegawai::getStatusOptions() as $statusValue =>
@@ -57,19 +56,35 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="telepon" name="telepon"
+                                        placeholder="Telepon" required>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row mx-auto">
-                            <div class="col md-6">
+                            <div class="col">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Telepon" required>
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        placeholder="Alamat" required onfocus="isiAlamat()">
                                 </div>
-                            </div>
 
-                            <div class="col md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
-                                </div>
+                                <script>
+                                    function isiAlamat() {
+                                        // Ganti teks ini dengan logika atau sumber data sesuai kebutuhan Anda
+                                        var kota = "Kota Contoh";
+                                        var kabupaten = "Kabupaten Contoh";
+                                        var provinsi = "Provinsi Contoh";
+
+                                        // Mengisi nilai input alamat dengan alamat lengkap
+                                        var alamatLengkap = kota + ", " + kabupaten + ", " + provinsi;
+                                        document.getElementById("alamat").value = alamatLengkap;
+                                    }
+
+                                </script>
                             </div>
                         </div>
 
@@ -84,7 +99,8 @@
                                 required>
                                 <option value="" selected disabled>Pilih Unit</option>
                                 @foreach ($units as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->nama }} ({{ $unit->singkatan }})</option>
+                                <option value="{{ $unit->id }}">{{ $unit->nama }} ({{ $unit->singkatan }})
+                                </option>
                                 @endforeach
                             </select>
                         </div>
