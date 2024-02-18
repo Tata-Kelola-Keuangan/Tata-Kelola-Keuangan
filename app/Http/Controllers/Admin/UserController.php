@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -71,6 +72,15 @@ class UserController extends Controller
         $input['password'] = FacadesHash::make($input['password']);
 
         $user = User::create($input);
+
+        if ($user) {
+            $pegawai = Pegawai::create([
+                'nama' => $user->name,
+                'email' => $user->email,
+                'user_id' => $user->id,
+            ]);
+        }
+
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('admin.user.index')->with('success', 'User created successfully');

@@ -43,11 +43,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-<<<<<<< HEAD
-        return view('admin.role.new',['permissions'=>$permissions]);
-=======
         return view('admin.role.create',['permissions'=>$permissions]);
->>>>>>> 59fafbafafd14c7152031c743ad1ed2a935600ba
     }
 
     /**

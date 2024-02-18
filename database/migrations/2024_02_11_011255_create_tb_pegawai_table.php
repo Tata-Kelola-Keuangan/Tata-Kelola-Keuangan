@@ -15,18 +15,18 @@ class CreateTbPegawaiTable extends Migration
     {
         Schema::create('tb_pegawai', function (Blueprint $table) {
             $table->id();
-            $table->string('NIK');
-            $table->date('tgl_lahir');
+            $table->string('NIK')->nullable();
+            $table->date('tgl_lahir')->nullable();
             $table->string('nama');
-            $table->string('nomor_induk');
-            $table->enum('status', ['Aktif', 'Tidak Aktif']);
-            $table->string('telepon');
-            $table->string('alamat');
+            $table->string('nomor_induk')->nullable();
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable();
+            $table->string('telepon')->nullable();
+            $table->string('alamat')->nullable();
             $table->string('email');
-            $table->unsignedBigInteger('unit_id');
-            $table->string('KK');
-            $table->string('NPWP');
-            $table->enum('jenis', ['Jenis 1', 'Jenis 2']);
+            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->string('KK')->nullable();
+            $table->string('NPWP')->nullable();
+            $table->enum('jenis', ['Jenis 1', 'Jenis 2'])->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
