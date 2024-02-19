@@ -4,6 +4,7 @@
 <head>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> roupel
   <meta charset="utf-8">
@@ -18,6 +19,8 @@
   <link href="{{asset('asset/css/ruang-admin.min.css')}}" rel="stylesheet">
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> ddf047441dcea412b9f0ba2fec302d970fb59be4
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,9 +32,12 @@
     <link href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('asset/css/ruang-admin.min.css') }}" rel="stylesheet">
     @stack('css')
+<<<<<<< HEAD
 >>>>>>> d63912179dcaeef4af0915801ec7a346229cffca
 =======
 >>>>>>> roupel
+=======
+>>>>>>> ddf047441dcea412b9f0ba2fec302d970fb59be4
 </head>
 
 <body id="page-top">
@@ -73,8 +79,11 @@
                 {{ $slot }}
 
             </div>
+            @include('layouts.footer')
         </div>
+    </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -99,6 +108,13 @@
 >>>>>>> d63912179dcaeef4af0915801ec7a346229cffca
 =======
 >>>>>>> roupel
+=======
+    <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('asset/js/ruang-admin.min.js') }}"></script>
+    @stack('js')
+>>>>>>> ddf047441dcea412b9f0ba2fec302d970fb59be4
 </body>
 
 </html>
