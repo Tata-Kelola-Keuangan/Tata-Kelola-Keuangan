@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Perencanaan;
+use App\Models\Unit;
 
 class PerencanaanController extends Controller
 {
@@ -16,7 +17,8 @@ class PerencanaanController extends Controller
 
     public function create()
     {
-        return view('admin.perencanaan.create');
+        $units = Unit::all();
+        return view('admin.perencanaan.create', compact('units'));
     }
 
     public function store(Request $request)

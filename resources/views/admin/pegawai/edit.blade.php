@@ -27,31 +27,44 @@
                         <div class="card-header">Pegawai</div>
                         <div class="card-body">
                             @can('Pegawai edit')
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="nama">Nama Pegawai</label>
-                                    <input class="form-control" id="nama" name="nama" type="text"
-                                        placeholder="Enter your username" value="{{ $pegawai->nama }}">
-                                </div>
-                                <div class="row gx-3 mb-3">
+                                <div class="row">
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="NIK">NIK</label>
-                                        <input class="form-control" id="NIK" name="NIK"
-                                            placeholder="Enter your first name" value="{{ $pegawai->NIK }}">
+                                        <div class="form-group">
+                                            <label for="nama">Nama</label>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                required>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="tgl_lahir">Tanggal Lahir</label>
-                                        <input class="form-control" id="tgl_lahir" name="tgl_lahir" type="date"
-                                            value="{{ $pegawai->tgl_lahir }}">
+                                        <div class="form-group">
+                                            <label for="NIK">NIK</label>
+                                            <input type="text" class="form-control" id="NIK" name="NIK"
+                                                required>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="nomor_induk">Nomor Induk</label>
-                                        <input class="form-control" id="nomor_induk" name="nomor_induk"
-                                            placeholder="Enter your Nomor Indik" value="{{ $pegawai->nomor_induk }}">
+                                        <div class="form-group" id="simple-date1">
+                                            <label for="tgl_lahir">Tanggal Lahir</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" value="{{ date('d/m/Y') }}"
+                                                    id="tgl_lahir" name="tgl_lahir" required>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nomor_induk">Nomor Induk</label>
+                                            <input type="text" class="form-control" id="nomor_induk" name="nomor_induk"
+                                                required>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLocation">Status</label>
                                         <select class="form-control" id="status" name="status"

@@ -59,7 +59,9 @@
         <div class="row mb-3">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-primary mb-3">Tambah</a>
+                @can('Pegawai create')
+                <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.perencanaan.create') }}">Tambah Pegawai</a> 
+            @endcan
                 </div>
             </div>
         </div>
