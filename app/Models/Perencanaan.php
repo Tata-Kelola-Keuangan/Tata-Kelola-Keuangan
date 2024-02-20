@@ -12,9 +12,8 @@ class Perencanaan extends Model
     protected $table = 'tb_perencanaan';
 
     protected $fillable = [
-        'no',
         'nama',
-        'kode',
+        'kd_perencanaan',
         'sumber',
         'revisi',
         'unit_id',

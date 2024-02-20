@@ -59,7 +59,7 @@ class PermissionController extends Controller
             'name'=>'required',
         ]);
         $permission = Permission::create(['name'=>$request->name]);
-        return redirect()->route('admin.permission.index')->withSuccess('Permission create successfully !!!');
+        return redirect()->route('admin.permissions.index')->withSuccess('Permission create successfully !!!');
     }
 
     /**
@@ -81,7 +81,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-       return view('admin.permission.edit',['permission' => $permission]);
+       return view('admin.permissions.edit',['permission' => $permission]);
     }
 
     /**

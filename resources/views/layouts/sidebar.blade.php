@@ -18,31 +18,13 @@
         Features
     </div>
 
-    @canany('User access', 'User add', 'User edit', 'User delete')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-            aria-expanded="true" aria-controls="collapseBootstrap">
-            <i class="fas fa- fa- solid fa-user -maximize"></i>
-            <span><b>Manajemen User</b></span>
-        </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Manajemen User</h6>
-                <a class="collapse-item" href="{{ route('admin.user.index') }}">User</a>
-                <a class="collapse-item" href="{{ route('admin.roles.index') }}">Tipe User</a>
-                <a class="collapse-item" href="{{ route('admin.permissions.index') }}">Hak Akses</a>
-            </div>
-        </div>
-    </li>
-    @endcanany
-
     @canany('Pegawai access', 'Pegawai add', 'Pegawai edit', 'Pegawai delete')
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.pegawai.index') }}">
-            <i class="fas fa-solid fa-users"></i>
-            <span>Pegawai</span>
-        </a>
-    </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('admin.unit.index') }}">
+                <i class="fas fa-solid fa-users"></i>
+                <span>Unit</span>
+            </a>
+        </li>
     @endcanany
 
     <li class="nav-item active">
@@ -65,5 +47,37 @@
             <span>Laporan</span>
         </a>
     </li>
+
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Management User
+    </div>
+
+    @canany('User access', 'User add', 'User edit', 'User delete')
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+                aria-expanded="true" aria-controls="collapseBootstrap">
+                <i class="fas fa- fa- solid fa-user -maximize"></i>
+                <span><b>Manajemen User</b></span>
+            </a>
+            <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Manajemen User</h6>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">User</a>
+                    <a class="collapse-item" href="{{ route('admin.roles.index') }}">Tipe User</a>
+                    <a class="collapse-item" href="{{ route('admin.permissions.index') }}">Hak Akses</a>
+                </div>
+            </div>
+        </li>
+    @endcanany
+    
+    @canany('Pegawai access', 'Pegawai add', 'Pegawai edit', 'Pegawai delete')
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('admin.pegawai.index') }}">
+                <i class="fas fa-solid fa-users"></i>
+                <span>Pegawai</span>
+            </a>
+        </li>
+    @endcanany
 </ul>
 <!-- Sidebar -->

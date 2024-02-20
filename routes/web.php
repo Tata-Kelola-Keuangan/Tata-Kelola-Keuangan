@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     RoleController,
     UserController,
-    PegawaiController
+    PegawaiController,
+    UnitController
 };
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\PelaksanaanController;
 use App\Http\Controllers\PerencanaanController;
+use App\Http\Controllers\SubPerencanaanController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,16 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')-
         Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
     });
 
+    //unit
+    Route::prefix('Unit')->group(function () {
+        Route::get('/', [UnitController::class, 'index'])->name('unit.index');
+        Route::get('/add', [UnitController::class, 'create'])->name('unit.create');
+        Route::post('/store', [UnitController::class, 'store'])->name('unit.store');
+        Route::get('/edit/{unit}', [UnitController::class, 'edit'])->name('unit.edit');
+        Route::put('/update/{unit}', [UnitController::class, 'update'])->name('unit.update');
+        Route::delete('/destroy/{unit}', [UnitController::class, 'destroy'])->name('unit.destroy');
+    });
+
     //pegawai
     Route::prefix('Pegawai')->group(function () {
         Route::get('/', [PegawaiController::class, 'index'])->name('pegawai.index');
@@ -58,13 +70,25 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')-
     });
 
     //perencanaan
-    Route::prefix('Perancanaan')->group(function () {
+    Route::prefix('Perencanaan')->group(function () {
         Route::get('/', [PerencanaanController::class, 'index'])->name('perencanaan.index');
         Route::get('/add', [PerencanaanController::class, 'create'])->name('perencanaan.create');
         Route::post('/store', [PerencanaanController::class, 'store'])->name('perencanaan.store');
-        Route::get('/edit/{Perancanaan}', [PerencanaanController::class, 'edit'])->name('perencanaan.edit');
-        Route::put('/update/{Perancanaan}', [PerencanaanController::class, 'update'])->name('perencanaan.update');
-        Route::delete('/destroy/{Perancanaan}', [PerencanaanController::class, 'destroy'])->name('perencanaan.destroy');
+        Route::get('/edit/{Perencanaan}', [PerencanaanController::class, 'edit'])->name('perencanaan.edit');
+        Route::put('/update/{Perencanaan}', [PerencanaanController::class, 'update'])->name('perencanaan.update');
+        Route::get('/show/{id}', [PerencanaanController::class, 'show'])->name('perencanaan.show');
+        Route::delete('/destroy/{Perencanaan}', [PerencanaanController::class, 'destroy'])->name('perencanaan.destroy');
+    });
+
+    //perencanaan
+    Route::prefix('Perencanaan/Sub_Perencanaan')->group(function () {
+        Route::get('/{id}', [SubPerencanaanController::class, 'index'])->name('perencanaan.sub_perencanaan.index');
+        Route::get('/add', [subPerencanaanController::class, 'create'])->name('perencanaan.sub_perencanaan.create');
+        Route::post('/store', [subPerencanaanController::class, 'store'])->name('perencanaan.sub_perencanaan.store');
+        Route::get('/edit/{id}', [subPerencanaanController::class, 'edit'])->name('perencanaan.sub_perencanaan.edit');
+        Route::put('/update/{id}', [subPerencanaanController::class, 'update'])->name('perencanaan.sub_perencanaan.update');
+        Route::get('/show/{id}', [subPerencanaanController::class, 'show'])->name('perencanaan.sub_perencanaan.show');
+        Route::delete('/destroy/{id}', [subPerencanaanController::class, 'destroy'])->name('perencanaan.sub_perencanaan.destroy');
     });
 
     //pelaksanaan

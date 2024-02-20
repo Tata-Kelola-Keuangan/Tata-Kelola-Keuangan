@@ -59,12 +59,71 @@
         <div class="row mb-3">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-primary mb-3">Tambah</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                        id="#modalCenter">Tambah</button>
                 </div>
             </div>
         </div>
 
-        <!-- DataTable with Hover -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Perencanaan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="{{ route('admin.perencanaan.store') }}">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="nama">Nama Perencanaan</label>
+                                        <input type="text" class="form-control" id="nama" name="nama"
+                                            aria-describedby="emailHelp" placeholder="Masukkan nama" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kd_perencanaan">Kode Perencanaan</label>
+                                        <input type="text" class="form-control" id="kd_perencanaan" name="kd_perencanaan"
+                                            aria-describedby="emailHelp" placeholder="Masukkan kode perencanaan"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sumber">Sumber Dana</label>
+                                        <input type="text" class="form-control" id="sumber" name="sumber"
+                                            aria-describedby="emailHelp" placeholder="Masukkan sumber dana" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="revisi">Revisi</label>
+                                        <input type="text" class="form-control" id="revisi" name="revisi"
+                                            aria-describedby="emailHelp" placeholder="Masukkan revisi" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="unit_id">Unit</label>
+                                        <select class="form-control" id="unit_id" name="unit_id" required>
+                                            <option value="">Select Unit</option>
+                                            @foreach ($units as $unit)
+                                                <option value="{{ $unit->id }}">{{ $unit->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary"
+                                data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="card mb-4">
@@ -72,7 +131,6 @@
                         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>No</th>
                                     <th>Kode Perencanaan</th>
                                     <th>Nama Perencanaan</th>
                                     <th>Sumber</th>
@@ -84,14 +142,16 @@
                             <tbody>
                                 @foreach ($perencanaans as $perencanaan)
                                     <tr>
-                                        <td>{{ $perencanaan->kode }}</td>
+                                        <td>{{ $perencanaan->kd_perencanaan }}</td>
                                         <td>{{ $perencanaan->nama }}</td>
                                         <td>{{ $perencanaan->sumber }}</td>
                                         <td>{{ $perencanaan->revisi }}</td>
                                         <td>{{ $perencanaan->unit->nama }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('perencanaan.show', $perencanaan->id) }}"
-                                                class="btn btn-sm btn-primary">View</a>
+                                        <td>
+                                            <a href="{{ route('admin.perencanaan.sub_perencanaan.index', $perencanaan->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-arrow-up-right-from-square"></i>
+                                                View
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
