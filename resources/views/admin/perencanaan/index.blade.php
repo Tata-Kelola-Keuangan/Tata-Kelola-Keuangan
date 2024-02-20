@@ -15,7 +15,7 @@
                         <div class="row align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Jumlah Perencanaan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlah_perencanaan }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-chart-simple fa-2x text-success"></i>
@@ -30,7 +30,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Total Biaya Perencanaan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 00</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{ $total_biaya }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-money-bill fa-2x text-success"></i>
@@ -130,7 +130,7 @@
                     <div class="table-responsive p-3">
                         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                             <thead class="thead-light">
-                                <tr>
+                                <tr class="text-center">
                                     <th>Kode Perencanaan</th>
                                     <th>Nama Perencanaan</th>
                                     <th>Sumber</th>
@@ -147,7 +147,7 @@
                                         <td>{{ $perencanaan->sumber }}</td>
                                         <td>{{ $perencanaan->revisi }}</td>
                                         <td>{{ $perencanaan->unit->nama }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('admin.perencanaan.sub_perencanaan.index', $perencanaan->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-arrow-up-right-from-square"></i>
                                                 View

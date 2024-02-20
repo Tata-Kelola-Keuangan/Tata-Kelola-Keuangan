@@ -42,18 +42,18 @@
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="#">
             <i class="fas fa-solid fa-book"></i>
             <span>Laporan</span>
         </a>
     </li>
 
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Management User
-    </div>
-
     @canany('User access', 'User add', 'User edit', 'User delete')
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Management User
+        </div>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
                 aria-expanded="true" aria-controls="collapseBootstrap">
@@ -70,7 +70,7 @@
             </div>
         </li>
     @endcanany
-    
+
     @canany('Pegawai access', 'Pegawai add', 'Pegawai edit', 'Pegawai delete')
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('admin.pegawai.index') }}">

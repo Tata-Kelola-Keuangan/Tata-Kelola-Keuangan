@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Perencanaan;
 use App\Models\SubPerencanaan;
+use App\Models\Pegawai;
+use App\Models\PPK;
+
 use Illuminate\Http\Request;
 
 class SubPerencanaanController extends Controller
 {
     public function index($id)
     {
-        $sub_perencanaans = SubPerencanaan::findOrFail($id);
-        $perencanaans = Perencanaan::all();
-        return view('admin.perencanaan.sub_perencanaan.index', compact('sub_perencanaans', 'perencanaans'));
+        $sub_perencanaans = SubPerencanaan::where('perencanaan_id', $id)->get();
+        $perencanaan = Perencanaan::findOrFail($id);
+        $pegawai = Pegawai::all();
+        $ppk = PPK::all();
+        return view('admin.perencanaan.sub_perencanaan.index', compact('sub_perencanaans', 'perencanaan', 'pegawai', 'ppk'));
     }
 
     public function create()
@@ -22,8 +27,27 @@ class SubPerencanaanController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request and store the new SubPerencanaan
+        $validatedData = $request->validate([
+            'kegiatan' => 'required|string',
+            'satuan' => 'required|string',
+            'volume' => 'required|string',
+            'harga_satuan' => 'required|numeric',
+            'output' => 'required|numeric',
+            'rencana_mulai' => 'required|date',
+            'rencana_bayar' => 'required|date',
+            'perencanaan_id' => 'required|exists:tb_perencanaan,id',
+            'pic_id' => 'required|exists:tb_pegawai,id',
+            'ppk_id' => 'required|exists:tb_ppk,id',
+        ]);
+
+        $validatedData['file_hps'] = $request->file_hps ?? 'default';
+        $validatedData['file_kak'] = $request->file_kak ?? 'default';
+        SubPerencanaan::create($validatedData);
+
+        return redirect()->route('admin.perencanaan.sub_perencanaan.index', $validatedData['perencanaan_id'])
+            ->with('success', 'Sub Perencanaan berhasil ditambahkan.');
     }
+
 
     public function show($id)
     {

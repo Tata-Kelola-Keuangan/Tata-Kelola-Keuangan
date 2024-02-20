@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Perencanaan;
+use App\Models\SubPerencanaan;
 use App\Models\Unit;
 
 class PerencanaanController extends Controller
@@ -13,7 +14,9 @@ class PerencanaanController extends Controller
     {
         $units = Unit::all();
         $perencanaans = Perencanaan::all();
-        return view('admin.perencanaan.index', compact('perencanaans', 'units'));
+        $jumlah_perencanaan = SubPerencanaan::count();
+        $total_biaya = SubPerencanaan::sum('output');
+        return view('admin.perencanaan.index', compact('perencanaans', 'units', 'jumlah_perencanaan', 'total_biaya'));
     }
 
 
