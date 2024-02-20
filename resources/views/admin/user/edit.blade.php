@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary mb-9">Simpan</button>
+                                <button type="submit" class="btn btn-primary mb-3">Simpan</button>
                             </div>
                         </form>
                     @endcan

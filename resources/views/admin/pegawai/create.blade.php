@@ -33,8 +33,8 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ date('d/m/Y') }}"
-                                                    id="tgl_lahir" name="tgl_lahir" required>
+                                                <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir"
+                                                    value="{{ $pegawai->tgl_lahir }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -155,17 +155,23 @@
             </div>
         </div>
     </div>
-
+    
     @push('js')
+        <script src="{{ asset('asset/vendor/select2/dist/js/select2.min.js') }}"></script>
+        <!-- Bootstrap Datepicker -->
+        <script src="{{ asset('asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+        <!-- Bootstrap Touchspin -->
+        <script src="{{ asset('asset/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js') }}"></script>
+        <!-- ClockPicker -->
+        <script src="{{ asset('asset/vendor/clock-picker/clockpicker.js') }}"></script>
+
         <script>
-            $(document).ready(function() {
-                $('#simple-date1 .input-group.date').datepicker({
-                    format: 'dd/mm/yyyy',
-                    todayBtn: 'linked',
-                    todayHighlight: true,
-                    autoclose: true,
-                });
-            })
+            $('#simple-date1 .input-group.date').datepicker({
+                format: 'yyyy-mm-dd',
+                todayBtn: 'linked',
+                todayHighlight: true,
+                autoclose: true,
+            });
         </script>
     @endpush
 </x-app-layout>
