@@ -42,7 +42,7 @@
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{ 'admin.laporan' }}">
+        <a class="nav-link" href="{{ 'admin.pegawai.edit' }}">
             <i class="fas fa-solid fa-book"></i>
             <span>Laporan</span>
         </a>

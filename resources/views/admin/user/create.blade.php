@@ -15,7 +15,7 @@
                         <div class="row mx-auto">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label for="nama">Nama User</label>
+                                    <label for="nama">Nama User</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Masukkan Nama" required>
                                 </div>
@@ -40,34 +40,39 @@
                             </div>
                         </div>
 
-                <div class="form-group">
-                    <label for="roles">Jenis</label>
-                    <select class="form-control" id="roles" name="roles[]" aria-label="Default select example" required>
-                        <option selected disabled>Pilih Role</option>
-                        @foreach ($roles as $role)
-                            <option value="{{ $role }}">{{ $role }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="example@gmail.com" required>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com"
-                        required>
-                </div>
+                        <div class="form-group mx-auto">
+                            <div class="col">
+                                <label for="roles">Tipe User</label>
+                                <select class="form-control" type="roles" name="roles[]" id="roles" required>
+                                    <option value="">Pilih Role</option>
+                                    @foreach ($roles as $role)
+                                    <option value="{{$role}}">{{$role}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="row mx-auto">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label for="password">Password</label>
+                                    <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Masukan Password" required>
+                                        placeholder="Kosongkan Jka Tidak Ingin Mengganti Password" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label for="confirm-password">Konfirmasi Password</label>
+                                    <label for="confirm-password">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="confirm-password"
                                         name="confirm-password" placeholder="Konfirmasi Password" required>
                                 </div>
@@ -75,7 +80,7 @@
                         </div>
 
                         <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-primary mb-4">Tambahkan</button>
+                            <button type="submit" class="btn btn-primary mb-4">Tambahkan</button>
                         </div>
                     </form>
                     @endcan

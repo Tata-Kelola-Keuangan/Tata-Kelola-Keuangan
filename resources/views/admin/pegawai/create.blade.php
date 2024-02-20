@@ -130,7 +130,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="user_id">Unit</label>
+                                            <label for="user_id">Penjabat</label>
                                             <select class="form-control" id="user_id" name="user_id"
                                                 aria-label="Default select example" required>
                                                 <option value="" selected disabled>Pilih User</option>
