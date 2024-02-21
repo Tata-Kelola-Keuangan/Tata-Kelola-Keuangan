@@ -52,4 +52,9 @@ class Pegawai extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    public function sub_perencanaan()
+    {
+        return $this->hasMany(SubPerencanaan::class);
+    }
 }

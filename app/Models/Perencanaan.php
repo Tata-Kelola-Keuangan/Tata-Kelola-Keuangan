@@ -19,9 +19,13 @@ class Perencanaan extends Model
         'unit_id',
     ];
 
-    // Definisikan relasi ke model Unit
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function sub_perencanaan()
+    {
+        return $this->hasMany(SubPerencanaan::class);
     }
 }

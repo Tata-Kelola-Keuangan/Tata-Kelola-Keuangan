@@ -80,9 +80,9 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')-
         Route::delete('/destroy/{Perencanaan}', [PerencanaanController::class, 'destroy'])->name('perencanaan.destroy');
     });
 
-    //perencanaan
+    //sub perencanaan
     Route::prefix('Perencanaan/Sub_Perencanaan')->group(function () {
-        Route::get('/{id}', [SubPerencanaanController::class, 'index'])->name('perencanaan.sub_perencanaan.index');
+        Route::get('/view/{id}', [SubPerencanaanController::class, 'index'])->name('perencanaan.sub_perencanaan.index');
         Route::get('/add', [subPerencanaanController::class, 'create'])->name('perencanaan.sub_perencanaan.create');
         Route::post('/store', [subPerencanaanController::class, 'store'])->name('perencanaan.sub_perencanaan.store');
         Route::get('/edit/{id}', [subPerencanaanController::class, 'edit'])->name('perencanaan.sub_perencanaan.edit');
