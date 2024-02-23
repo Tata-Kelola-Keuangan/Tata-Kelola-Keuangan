@@ -8,10 +8,28 @@
             <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Satuan Target</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ $sub_perencanaans->satuan * $sub_perencanaans->harga_satuan }}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-money-bill fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Jumlah Perencanaan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Volume Target</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $sub_perencanaans->volume }}
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-chart-simple fa-2x text-success"></i>
@@ -25,23 +43,9 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Total Biaya Perencanaan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 00</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-money-bill fa-2x text-success"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Perancangan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Biaya DPA</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{ $sub_perencanaans->output }}
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-info"></i>
@@ -62,10 +66,15 @@
                                     <i class="fas fa-arrow-left"></i>
                                     Kembali
                                 </button>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#exampleModalCenter" id="#modalCenter">
-                                    Tambah
-                                </button>
+                                <form method="POST"
+                                    action="{{ route('admin.perencanaan.sub_perencanaan.destroy', $sub_perencanaans->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -103,9 +112,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="output">Output</label>
+                            <label for="output">Biaya DPA</label>
                             <input type="text" class="form-control" id="output" name="output"
-                                value="{{ $sub_perencanaans->output }}" disabled>
+                                value="Rp. {{ $sub_perencanaans->output }}" disabled>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -130,7 +139,7 @@
                                 <div class="form-group">
                                     <label for="pic_id">PIC</label>
                                     <input type="text" class="form-control" id="pic_id" name="pic_id"
-                                        value="{{ $sub_perencanaans->pic_id }}" disabled>
+                                        value="{{ $sub_perencanaans->pegawai->nama }}" disabled>
                                 </div>
                             </div>
 

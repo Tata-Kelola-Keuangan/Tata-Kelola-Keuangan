@@ -7,13 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Perencanaan;
 use App\Models\SubPerencanaan;
 use App\Models\Unit;
+use Illuminate\Support\Facades\Auth;
 
 class PerencanaanController extends Controller
 {
     public function index()
     {
+        $role = Auth::user()->role;
+
+        if ($role === 'Administrator') {
+            $perencanaans = Perencanaan::all();
+        } else {
+            $perencanaans = Perencanaan::where('unit_id', Auth::user()->unit_id)->get();
+        }
+
         $units = Unit::all();
-        $perencanaans = Perencanaan::all();
         $jumlah_perencanaan = SubPerencanaan::count();
         $total_biaya = SubPerencanaan::sum('output');
         return view('admin.perencanaan.index', compact('perencanaans', 'units', 'jumlah_perencanaan', 'total_biaya'));

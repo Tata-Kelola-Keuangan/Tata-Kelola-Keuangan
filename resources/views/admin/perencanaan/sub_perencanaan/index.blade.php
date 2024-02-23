@@ -1,5 +1,6 @@
 @push('css')
     <link href="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" >
 @endpush
 
 <x-app-layout>
@@ -43,7 +44,7 @@
                                                 <input type="text" class="form-control" id="volume" name="volume"
                                                     placeholder="Masukkan volume" required>
                                             </div>
-                                        </div>                                        
+                                        </div>
 
                                         <div class="col">
                                             <div class="form-group">
@@ -55,14 +56,19 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="output">Output</label>
-                                        <input type="text" class="form-control" id="output" name="output"
-                                            placeholder="Output" readonly>
+                                        <label for="output">Biaya DPA</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input type="number" class="form-control" id="output" name="output"
+                                            placeholder="Masukkan DPA" required>
+                                        </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col">
-                                            <div class="form-group">
+                                            <div class="form-group" id="simple-date1">
                                                 <label for="rencana_mulai">Rencana Mulai</label>
                                                 <div class="input-group date">
                                                     <div class="input-group-prepend">
@@ -76,7 +82,7 @@
                                         </div>
 
                                         <div class="col">
-                                            <div class="form-group">
+                                            <div class="form-group" id="simple-date1">
                                                 <label for="rencana_bayar">Rencana Bayar</label>
                                                 <div class="input-group date">
                                                     <div class="input-group-prepend">
@@ -105,7 +111,8 @@
                                         <select class="form-control" id="ppk_id" name="ppk_id" required>
                                             <option value="">Select PPK</option>
                                             @foreach ($ppk as $ppk)
-                                                <option value="{{ $ppk->id }}">{{ $ppk->tahun_anggaran }}</option>
+                                                <option value="{{ $ppk->id }}">{{ $ppk->tahun_anggaran }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -204,7 +211,6 @@
         <script src="{{ asset('asset/vendor/select2/dist/js/select2.min.js') }}"></script>
         <script src="{{ asset('asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('asset/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js') }}"></script>
-        <script src="{{ asset('asset/vendor/clock-picker/clockpicker.js') }}"></script>
 
         <script>
             $(document).ready(function() {
@@ -220,22 +226,6 @@
                 todayHighlight: true,
                 autoclose: true,
             });
-        </script>
-
-        <script>
-            const satuan = document.getElementById('satuan');
-            const hargaSatuan = document.getElementById('harga_satuan');
-            const output = document.getElementById('output');
-
-            satuan.addEventListener('input', calculateOutput);
-            hargaSatuan.addEventListener('input', calculateOutput);
-
-            function calculateOutput() {
-                const satuanValue = parseFloat(satuan.value) || 0;
-                const hargaSatuanValue = parseFloat(hargaSatuan.value) || 0;
-                const hasil = satuanValue * hargaSatuanValue;
-                output.value = hasil.toFixed(2);
-            }
         </script>
     @endpush
 </x-app-layout>

@@ -1,3 +1,7 @@
+@push('css')
+    <link href="{{ asset('asset/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" >
+@endpush
+
 <x-app-layout>
     <div class="container-xl px-4 mt-4">
         <form method="POST" action="{{ route('admin.pegawai.update', $pegawai->id) }}" enctype="multipart/form-data"

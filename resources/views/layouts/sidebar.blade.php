@@ -18,15 +18,6 @@
         Features
     </div>
 
-    @canany('Pegawai access', 'Pegawai add', 'Pegawai edit', 'Pegawai delete')
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ route('admin.unit.index') }}">
-                <i class="fas fa-solid fa-users"></i>
-                <span>Unit</span>
-            </a>
-        </li>
-    @endcanany
-
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.perencanaan.index') }}">
             <i class="fas fa- fa-calendar"></i>
@@ -76,6 +67,15 @@
             <a class="nav-link" href="{{ route('admin.pegawai.index') }}">
                 <i class="fas fa-solid fa-users"></i>
                 <span>Pegawai</span>
+            </a>
+        </li>
+    @endcanany
+    
+    @canany('Pegawai access', 'Pegawai add', 'Pegawai edit', 'Pegawai delete')
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('admin.unit.index') }}">
+                <i class="fas fa-briefcase"></i>
+                <span>Unit</span>
             </a>
         </li>
     @endcanany

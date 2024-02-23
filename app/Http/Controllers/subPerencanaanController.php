@@ -66,8 +66,11 @@ class SubPerencanaanController extends Controller
         // Validate the request and update the SubPerencanaan
     }
 
-    public function destroy($id)
+    public function destroy(SubPerencanaan $sub_perencanaan)
     {
-        // Delete the SubPerencanaan
+        $perencanaanId = $sub_perencanaan->perencanaan_id;
+        $sub_perencanaan->delete();
+
+        return redirect()->route('admin.perencanaan.sub_perencanaan.index', ['id' => $perencanaanId])->with('success', 'Sub Perencanaan berhasil dihapus');
     }
 }
