@@ -24,42 +24,6 @@ class AdminSeeder extends Seeder
             'profile' => 'default.png'
         ]);
 
-        $BisnisInformatika = User::create([
-            'name' => 'Bisnis dan Informatika',
-            'email' => 'informatika@gmail.com',
-            'password' => bcrypt('12345678'),
-            'profile' => 'default.png',
-        ]);
-
-        $TeknikSipil = User::create([
-            'name' => 'Teknik Sipil',
-            'email' => 'sipil@gmail.com',
-            'password' => bcrypt('12345678'),
-            'profile' => 'default.png',
-        ]);
-
-        $TeknikMesin = User::create([
-            'name' => 'Teknik Mesin',
-            'email' => 'mesin@gmail.com',
-            'password' => bcrypt('12345678'),
-            'profile' => 'default.png',
-        ]);
-
-        $Pertanian = User::create([
-            'name' => 'Pertanian',
-            'email' => 'pertanian@gmail.com',
-            'password' => bcrypt('12345678'),
-            'profile' => 'default.png',
-        ]);
-
-        $Pariwisata = User::create([
-            'name' => 'Pariwisata',
-            'email' => 'pariwisata@gmail.com',
-            'password' => bcrypt('12345678'),
-            'profile' => 'default.png',
-        ]);
-
-
         $admin_role = Role::create(['name' => 'Administrator']);
         $staff_role = Role::create(['name' => 'Staff']);
 
@@ -97,11 +61,6 @@ class AdminSeeder extends Seeder
 
 
         $admin->assignRole($admin_role);
-        $BisnisInformatika->assignRole($staff_role);
-        $TeknikSipil->assignRole($staff_role);
-        $TeknikMesin->assignRole($staff_role);
-        $Pertanian->assignRole($staff_role);
-        $Pariwisata->assignRole($staff_role);
 
 
         $admin_role->givePermissionTo(Permission::all());

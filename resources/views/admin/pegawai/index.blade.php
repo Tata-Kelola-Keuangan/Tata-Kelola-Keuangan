@@ -7,9 +7,6 @@
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Pegawai</h1>
-            @can('Pegawai create')
-                <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.pegawai.create') }}">Tambah Pegawai</a> 
-            @endcan
         </div>
 
         <div class="row">
@@ -39,7 +36,13 @@
                                             <td>{{ $pegawai->nomor_induk }}</td>
                                             <td>{{ $pegawai->status }}</td>
                                             <td>{{ $pegawai->email }}</td>
-                                            <td>{{ $pegawai->unit_id }}</td>
+                                            <td>
+                                                @if ($pegawai->unit)
+                                                    {{ $pegawai->unit->nama }}
+                                                @else
+                                                    
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 @can('Pegawai edit')
                                                     <a href="{{ route('admin.pegawai.edit', ['pegawai' => $pegawai->id]) }}"

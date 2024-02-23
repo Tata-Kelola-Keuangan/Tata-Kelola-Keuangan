@@ -4,8 +4,74 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">User</h1>
             @can('User create')
-                <a type="button" class="btn btn-primary mb-1" href="{{ route('admin.user.create') }}">Tambah User</a>
+                <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#ModalUser"
+                    id="#modalCenter">
+                    Tambah
+                </button>
             @endcan
+        </div>
+
+        {{-- modal tambah user --}}
+        <div class="modal fade" id="ModalUser" tabindex="-1" role="dialog" aria-labelledby="ModalUserTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalUserTitle">Tambah User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="{{ route('admin.user.store') }}">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="nama">Nama User</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Masukkan Nama" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="roles">Tipe User</label>
+                                        <select class="form-control" type="roles" name="roles[]" id="roles"
+                                            required>
+                                            <option value="">Pilih Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role }}">{{ $role }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="example@gmail.com" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Masukkan Password" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="confirm-password">Konfirmasi Password</label>
+                                        <input type="password" class="form-control" id="confirm-password"
+                                            name="confirm-password" placeholder="Konfirmasi Password" required>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="row">

@@ -58,7 +58,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')-
     //pegawai
     Route::prefix('Pegawai')->group(function () {
         Route::get('/', [PegawaiController::class, 'index'])->name('pegawai.index');
-        Route::get('/add', [PegawaiController::class, 'create'])->name('pegawai.create');
         Route::post('/store', [PegawaiController::class, 'store'])->name('pegawai.store');
         Route::get('/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
         Route::put('/update/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
@@ -68,7 +67,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')-
     //perencanaan
     Route::prefix('Perencanaan')->group(function () {
         Route::get('/', [PerencanaanController::class, 'index'])->name('perencanaan.index');
-        Route::get('/add', [PerencanaanController::class, 'create'])->name('perencanaan.create');
         Route::post('/store', [PerencanaanController::class, 'store'])->name('perencanaan.store');
         Route::get('/edit/{Perencanaan}', [PerencanaanController::class, 'edit'])->name('perencanaan.edit');
         Route::put('/update/{Perencanaan}', [PerencanaanController::class, 'update'])->name('perencanaan.update');

@@ -17,9 +17,7 @@ class PerencanaanFactory extends Factory
             'kd_perencanaan' => $this->faker->unique()->randomNumber(5),
             'sumber' => $this->faker->word,
             'revisi' => $this->faker->randomNumber(1),
-            'unit_id' => function () {
-                return Unit::factory()->create()->id;
-            },
+            'unit_id' => Unit::all()->random()->id,
         ];
     }
 }

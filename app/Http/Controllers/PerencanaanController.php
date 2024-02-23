@@ -13,25 +13,20 @@ class PerencanaanController extends Controller
 {
     public function index()
     {
-        $role = Auth::user()->role;
+        $user = Auth::user();
+        $role = $user->roles;
 
-        if ($role === 'Administrator') {
-            $perencanaans = Perencanaan::all();
+        if ($user->pegawai) {
+            $unit = $user->pegawai->unit; // Ambil unit dari pegawai yang sedang login
+            $perencanaans = Perencanaan::where('unit_id', $unit->id)->get();
         } else {
-            $perencanaans = Perencanaan::where('unit_id', Auth::user()->unit_id)->get();
+            $perencanaans = Perencanaan::all(); // Jika user bukan pegawai, inisialisasi koleksi kosong
         }
 
         $units = Unit::all();
         $jumlah_perencanaan = SubPerencanaan::count();
         $total_biaya = SubPerencanaan::sum('output');
         return view('admin.perencanaan.index', compact('perencanaans', 'units', 'jumlah_perencanaan', 'total_biaya'));
-    }
-
-
-    public function create()
-    {
-        $units = Unit::all();
-        return view('admin.perencanaan.create', compact('units'));
     }
 
     public function store(Request $request)

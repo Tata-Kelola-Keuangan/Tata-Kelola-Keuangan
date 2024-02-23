@@ -22,9 +22,10 @@ class PegawaiController extends Controller
 
     public function index()
     {
-        $pegawai = Pegawai::all();
+        $pegawai = Pegawai::with('unit')->get();
         return view('admin.pegawai.index', compact('pegawai'));
     }
+
 
     public function create()
     {
