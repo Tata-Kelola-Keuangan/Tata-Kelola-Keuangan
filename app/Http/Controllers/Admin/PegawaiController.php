@@ -89,7 +89,7 @@ class PegawaiController extends Controller
             $user->save();
         }
 
-        return redirect()->back()->with('success', 'Data pegawai berhasil diperbarui!');
+        return redirect()->route('admin.pegawai.index')->with('success', 'Data pegawai berhasil diperbarui!');
     }
 
     public function destroy(Pegawai $pegawai)

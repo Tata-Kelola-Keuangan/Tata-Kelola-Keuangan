@@ -33,8 +33,8 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                                    value="{{ $pegawai->tgl_lahir }}" required>
+                                                <input type="text" class="form-control" value="{{ date('d/m/Y') }}"
+                                                    id="tgl_lahir" name="tgl_lahir" required>
                                             </div>
                                         </div>
                                     </div>
