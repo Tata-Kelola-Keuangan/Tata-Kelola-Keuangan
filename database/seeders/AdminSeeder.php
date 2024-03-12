@@ -61,11 +61,7 @@ class AdminSeeder extends Seeder
 
 
         $admin_role = Role::create(['name' => 'Administrator']);
-        $informatika_role = Role::create(['name' => 'Bisnis dan Informatika']);
-        $sipil_role = Role::create(['name' => 'Teknik Sipil']);
-        $mesin_role = Role::create(['name' => 'Teknik Mesin']);
-        $pertanian_role = Role::create(['name' => 'Pertanian']);
-        $pariwisata_role = Role::create(['name' => 'Pariwisata']);
+        $staff_role = Role::create(['name' => 'Staff']);
 
         $permission = Permission::create(['name' => 'User access']);
         $permission = Permission::create(['name' => 'User edit']);
@@ -101,11 +97,11 @@ class AdminSeeder extends Seeder
 
 
         $admin->assignRole($admin_role);
-        $BisnisInformatika->assignRole($informatika_role);
-        $TeknikSipil->assignRole($sipil_role);
-        $TeknikMesin->assignRole($mesin_role);
-        $Pertanian->assignRole($pertanian_role);
-        $Pariwisata->assignRole($pariwisata_role);
+        $BisnisInformatika->assignRole($staff_role);
+        $TeknikSipil->assignRole($staff_role);
+        $TeknikMesin->assignRole($staff_role);
+        $Pertanian->assignRole($staff_role);
+        $Pariwisata->assignRole($staff_role);
 
 
         $admin_role->givePermissionTo(Permission::all());

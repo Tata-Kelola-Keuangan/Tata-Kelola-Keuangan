@@ -26,10 +26,6 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-// Route::get('/', function () {
-//     return view('admin.dashboard');
-// })->middleware(['auth'])->name('admin.dashboard');
-
 require __DIR__ . '/auth.php';
 
 Route::get('/', [HomeController::class, 'admin'])->name('admin.dashboard')->middleware(['auth']);
@@ -88,7 +84,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('Admin')-
         Route::get('/edit/{id}', [subPerencanaanController::class, 'edit'])->name('perencanaan.sub_perencanaan.edit');
         Route::put('/update/{id}', [subPerencanaanController::class, 'update'])->name('perencanaan.sub_perencanaan.update');
         Route::get('/show/{id}', [subPerencanaanController::class, 'show'])->name('perencanaan.sub_perencanaan.show');
-        Route::delete('/destroy/{id}', [subPerencanaanController::class, 'destroy'])->name('perencanaan.sub_perencanaan.destroy');
+        Route::delete('/destroy/{sub_perencanaan}', [subPerencanaanController::class, 'destroy'])->name('perencanaan.sub_perencanaan.destroy');
     });
 
     //pelaksanaan

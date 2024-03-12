@@ -1,3 +1,7 @@
+@push('css')
+    <link href="{{ asset('asset/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+@endpush
+
 <x-app-layout>
     <div class="container-fluid" id="container-wrapper">
         <h2>Form Tambah Pegawai</h2>
@@ -33,7 +37,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ date('d/m/Y') }}"
+                                                <input type="text" class="form-control" value="{{ date('Y-m-d') }}"
                                                     id="tgl_lahir" name="tgl_lahir" required>
                                             </div>
                                         </div>
@@ -157,6 +161,7 @@
     </div>
     
     @push('js')
+<<<<<<< HEAD
         <script src="{{ asset('asset/vendor/select2/dist/js/select2.min.js') }}"></script>
         <!-- Bootstrap Datepicker -->
         <script src="{{ asset('asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
@@ -172,6 +177,19 @@
                 todayHighlight: true,
                 autoclose: true,
             });
+=======
+        <script src="{{ asset('asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#simple-date1 .input-group.date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    todayBtn: 'linked',
+                    todayHighlight: true,
+                    autoclose: true,
+                });
+            })
+>>>>>>> 08a7bff7560a8459d60ccb9f51bd7055520b6f89
         </script>
     @endpush
 </x-app-layout>
